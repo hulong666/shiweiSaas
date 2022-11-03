@@ -19,6 +19,7 @@ class Account extends Controller
      */
     public function setting()
     {
+        $a = 1;
         // 当前小程序信息hhh
         $model = AccountModel::detail();
         if (!$this->request->isAjax()) {
