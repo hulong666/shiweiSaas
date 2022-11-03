@@ -24,7 +24,7 @@ class Account extends Controller
         if (!$this->request->isAjax()) {
             return $this->fetch('setting', compact('model'));
         }
-        // 更新小程序设置
+        // 更新小程序设置 是大V上班的发生的贝多芬
         if ($model->edit($this->postData('wxapp'))) {
             return $this->renderSuccess('更新成功');
         }
