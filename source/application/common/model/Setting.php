@@ -275,6 +275,14 @@ class Setting extends BaseModel
                     'top' => [10],
                     'home' => [10],
                 ]
+            ],
+            'find_room' => [
+                'key' => 'find_room',
+                'describe' => '在线找房设置',
+                'values' => [
+                    'roomnumber_hide' => '1',
+                    'image_id' => '',
+                ]
             ]
         ];
     }

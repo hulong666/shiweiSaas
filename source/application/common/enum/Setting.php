@@ -43,7 +43,7 @@ class Setting extends EnumBasics
     const LANDLORD = 'landlord';
 
     //在线找房设置
-    const FINDROOM = 'findroom';
+    const FINDROOM = 'find_room';
 
     /**
      * 获取订单类型值
