@@ -285,8 +285,8 @@ return [
                         'index' => 'setting.wechat.tenantseting/findroom'
                     ],
                     [
-                        'name' => '页面链接',
-                        'index' => 'setting.account.page/links'
+                        'name' => '在线收款设置',
+                        'index' => 'setting.wechat.tenantseting/collection'
                     ],
                     [
                         'name' => '帮助中心',

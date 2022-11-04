@@ -275,6 +275,19 @@ class Setting extends BaseModel
                     'top' => [10],
                     'home' => [10],
                 ]
+            ],
+            'collection' => [
+                'ket' => 'collection',
+                'describe' => '在线收款设置',
+                'values' => [
+                    'rent_collection' => 1,//在线收租手续费
+                    'arrears' => 1,
+                    'order_payment' => 1,
+                    'hydroelectricity' => 1,
+                    'rent' => 1,
+                    'tenant' => [10],
+                    'autonomy' => 0,
+                ]
             ]
         ];
     }

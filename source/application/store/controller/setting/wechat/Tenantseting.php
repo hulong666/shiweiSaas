@@ -51,6 +51,17 @@ class Tenantseting extends Controller
     }
 
     /**
+     * 在线收款设置
+     * @return array|mixed
+     * @throws \think\exception\DbException
+     */
+    public function collection()
+    {
+        error_reporting(E_ERROR | E_WARNING | E_PARSE);
+        return $this->updateEvent('collection');
+    }
+
+    /**
      * 更新商城设置事件
      * @param $key
      * @param $vars
