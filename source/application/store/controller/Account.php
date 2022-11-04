@@ -19,13 +19,12 @@ class Account extends Controller
      */
     public function setting()
     {
-        $a = 1;
-        // 当前小程序信息hhh
+        // 当前小程序信息
         $model = AccountModel::detail();
         if (!$this->request->isAjax()) {
             return $this->fetch('setting', compact('model'));
         }
-        // 更新小程序设置 是大V上班的发生的贝多芬
+        // 更新小程序设置
         if ($model->edit($this->postData('wxapp'))) {
             return $this->renderSuccess('更新成功');
         }
