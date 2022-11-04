@@ -281,8 +281,8 @@ return [
                         'index' => 'setting.wechat.tenantseting/landlord',
                     ],
                     [
-                        'name' => '分类模板',
-                        'index' => 'setting.account.page/category'
+                        'name' => '在线找房设置',
+                        'index' => 'setting.wechat.tenantseting/findroom'
                     ],
                     [
                         'name' => '页面链接',

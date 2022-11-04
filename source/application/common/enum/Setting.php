@@ -39,6 +39,12 @@ class Setting extends EnumBasics
     // 租客设置
     const TENANT = 'tenant';
 
+    //房东设置
+    const LANDLORD = 'landlord';
+
+    //在线找房设置
+    const FINDROOM = 'findroom';
+
     /**
      * 获取订单类型值
      * @return array
@@ -85,6 +91,14 @@ class Setting extends EnumBasics
             self::TENANT => [
                 'value' => self::TENANT,
                 'describe' => '租客设置',
+            ],
+            self::LANDLORD => [
+                'value' => self::LANDLORD,
+                'describe' => '房东设置',
+            ],
+            self::FINDROOM => [
+                'value' => self::FINDROOM,
+                'describe' => '在线找房设置',
             ],
         ];
     }

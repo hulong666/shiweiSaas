@@ -272,7 +272,8 @@ class Setting extends BaseModel
                 'key' => 'landlord',
                 'describe' => '房东设置',
                 'values' => [
-                    'top' => [],
+                    'top' => [10],
+                    'home' => [10],
                 ]
             ]
         ];

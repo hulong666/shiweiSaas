@@ -36,8 +36,18 @@ class Tenantseting extends Controller
      */
     public function landlord()
     {
-        error_reporting(E_ERROR | E_WARNING | E_PARSE);
         return $this->updateEvent('landlord');
+    }
+
+    /**
+     * 在线找房设置
+     * @return array|mixed
+     * @throws \think\exception\DbException
+     */
+    public function findRoom()
+    {
+        error_reporting(E_ERROR | E_WARNING | E_PARSE);
+        return $this->updateEvent('find_room');
     }
 
     /**
