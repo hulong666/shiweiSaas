@@ -304,7 +304,24 @@ class Setting extends BaseModel
                     'tenant_login' => 1,//租客微信登录设置
                     'landlord_login' => 1,
                 ]
-            ]
+            ],
+            'opening' => [
+                'ket' => 'opening',
+                'describe' => '给房东开发租客信息设置',
+                'values' => [
+                    'message_type' => [10,20,30,40,50,60,70,80,90,100,110,120,130]
+                ]
+            ],
+            'collectors' => [
+                'ket' => 'collectors',
+                'describe' => '租客账单催收设置',
+                'values' => [
+                    'collectors_type' => [10],
+                    'repeat_type' => [],
+                    'time' => 1,
+                    'days' => 3,
+                ]
+            ],
         ];
     }
 

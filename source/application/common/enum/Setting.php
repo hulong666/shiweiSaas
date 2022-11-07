@@ -51,6 +51,12 @@ class Setting extends EnumBasics
     //租客/房东微信登录设置
     const WXLOGIN = 'wx_login';
 
+    //给房东开发租客信息设置
+    const OPENING = 'opening';
+
+    //租客账单催收设置
+    const COLLECTORS = 'collectors';
+
     /**
      * 获取订单类型值
      * @return array
@@ -113,6 +119,14 @@ class Setting extends EnumBasics
             self::WXLOGIN => [
                 'value' => self::WXLOGIN,
                 'describe' => '租客/房东微信登录设置',
+            ],
+            self::OPENING => [
+                'value' => self::OPENING,
+                'describe' => '给房东开发租客信息设置',
+            ],
+            self::COLLECTORS => [
+                'value' => self::COLLECTORS,
+                'describe' => '租客账单催收设置',
             ],
         ];
     }

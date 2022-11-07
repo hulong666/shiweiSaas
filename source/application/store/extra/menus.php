@@ -289,8 +289,16 @@ return [
                         'index' => 'setting.wechat.tenantseting/collection'
                     ],
                     [
-                        'name' => '租客/房东微信登录设置',
+                        'name' => '微信登录设置',
                         'index' => 'setting.wechat.tenantseting/wxlogin'
+                    ],
+                    [
+                        'name' => '租客信息设置',
+                        'index' => 'setting.wechat.tenantseting/opening'
+                    ],
+                    [
+                        'name' => '催收设置',
+                        'index' => 'setting.wechat.tenantseting/collectors'
                     ],
                 ]
             ],

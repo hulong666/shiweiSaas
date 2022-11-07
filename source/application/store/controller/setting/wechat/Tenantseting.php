@@ -66,8 +66,28 @@ class Tenantseting extends Controller
      */
     public function wxLogin()
     {
-        error_reporting(E_ERROR | E_WARNING | E_PARSE);
         return $this->updateEvent('wx_login');
+    }
+
+    /**
+     * 给房东开发租客信息设置
+     * @return array|mixed
+     * @throws \think\exception\DbException
+     */
+    public function opening()
+    {
+        return $this->updateEvent('opening');
+    }
+
+    /**
+     * 租客账单催收设置
+     * @return array|mixed
+     * @throws \think\exception\DbException
+     */
+    public function collectors()
+    {
+        error_reporting(E_ERROR | E_WARNING | E_PARSE);
+        return $this->updateEvent('collectors');
     }
 
     /**
