@@ -45,6 +45,12 @@ class Setting extends EnumBasics
     //在线找房设置
     const FINDROOM = 'find_room';
 
+    //在线收款设置
+    const COLLECTION = 'collection';
+
+    //租客/房东微信登录设置
+    const WXLOGIN = 'wx_login';
+
     /**
      * 获取订单类型值
      * @return array
@@ -99,6 +105,14 @@ class Setting extends EnumBasics
             self::FINDROOM => [
                 'value' => self::FINDROOM,
                 'describe' => '在线找房设置',
+            ],
+            self::COLLECTION => [
+                'value' => self::COLLECTION,
+                'describe' => '在线收款设置',
+            ],
+            self::WXLOGIN => [
+                'value' => self::WXLOGIN,
+                'describe' => '租客/房东微信登录设置',
             ],
         ];
     }

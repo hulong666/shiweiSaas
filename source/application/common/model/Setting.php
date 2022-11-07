@@ -296,6 +296,14 @@ class Setting extends BaseModel
                     'tenant' => [10],
                     'autonomy' => 0,
                 ]
+            ],
+            'wx_login' => [
+                'ket' => 'wx_login',
+                'describe' => '租客/房东微信登录设置',
+                'values' => [
+                    'tenant_login' => 1,//租客微信登录设置
+                    'landlord_login' => 1,
+                ]
             ]
         ];
     }

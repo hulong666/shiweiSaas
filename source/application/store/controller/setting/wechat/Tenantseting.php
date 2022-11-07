@@ -46,7 +46,6 @@ class Tenantseting extends Controller
      */
     public function findRoom()
     {
-        error_reporting(E_ERROR | E_WARNING | E_PARSE);
         return $this->updateEvent('find_room');
     }
 
@@ -57,8 +56,18 @@ class Tenantseting extends Controller
      */
     public function collection()
     {
-        error_reporting(E_ERROR | E_WARNING | E_PARSE);
         return $this->updateEvent('collection');
+    }
+
+    /**
+     * 租客/房东微信登录设置
+     * @return array|mixed
+     * @throws \think\exception\DbException
+     */
+    public function wxLogin()
+    {
+        error_reporting(E_ERROR | E_WARNING | E_PARSE);
+        return $this->updateEvent('wx_login');
     }
 
     /**

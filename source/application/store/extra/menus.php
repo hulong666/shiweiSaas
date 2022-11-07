@@ -289,14 +289,8 @@ return [
                         'index' => 'setting.wechat.tenantseting/collection'
                     ],
                     [
-                        'name' => '帮助中心',
-                        'index' => 'setting.account.help/index',
-                        'uris' => [
-                            'setting.account.help/index',
-                            'setting.account.help/add',
-                            'setting.account.help/edit',
-                            'setting.account.help/delete',
-                        ]
+                        'name' => '租客/房东微信登录设置',
+                        'index' => 'setting.wechat.tenantseting/wxlogin'
                     ],
                 ]
             ],

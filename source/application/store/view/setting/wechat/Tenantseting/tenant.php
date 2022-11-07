@@ -108,16 +108,16 @@ use app\common\enum\IntelligentType as IntelligentTypeEnum;
                                 </label>
                                 <div class="am-u-sm-9">
                                     <label class="am-radio-inline">
-                                        <input type="radio" name="tenant[upload_video_type]" value="1"
+                                        <input type="radio" name="tenant[housekeeper_type]" value="1"
                                                data-am-ucheck
-                                            <?= $values['upload_video_type'] == '1' ? 'checked' : '' ?>
+                                            <?= $values['housekeeper_type'] == '1' ? 'checked' : '' ?>
                                                required>
                                         管家
                                     </label>
                                     <label class="am-radio-inline">
-                                        <input type="radio" name="tenant[upload_video_type]" value="0"
+                                        <input type="radio" name="tenant[housekeeper_type]" value="0"
                                                data-am-ucheck
-                                            <?= $values['upload_video_type'] == '0' ? 'checked' : '' ?>>
+                                            <?= $values['housekeeper_type'] == '0' ? 'checked' : '' ?>>
                                         出房业务员
                                     </label>
                                 </div>
