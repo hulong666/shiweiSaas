@@ -100,6 +100,25 @@ return [
             ],
         ]
     ],
+    'dictionaries' => [
+        'name' => '用户字典',
+        'icon' => 'icon-marketing',
+        'index' => 'dictionaries.required.regionalproperty/index',
+        'submenu' => [
+            [
+                'name' => '必填字段',
+                'submenu' => [
+                    'name' => '区域&楼盘地址',
+                    'index' => 'dictionaries.required.regionalproperty/index',
+                    'uris' => [
+                        'dictionaries.required.regionalproperty/add',
+                        'dictionaries.required.regionalproperty/edit',
+                        'dictionaries.required.regionalproperty/delete',
+                    ]
+                ]
+            ],
+        ]
+    ],
     /*'wxapp' => [
         'name' => '小程序',
         'icon' => 'icon-wxapp',

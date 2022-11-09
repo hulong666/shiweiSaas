@@ -29,6 +29,9 @@ class Finance extends FinanceModel
         $type > 0 && $this->where('type', '=', (int)$type);
         !empty($region) && $this->where('region', 'like', "%$region%");
         !empty($property_address) && $this->where('property_address', 'like', "%$property_address%");
+        if(!empty($start_time) && !empty($end_time)){
+            $this->where(['month'=>[['>=',strtotime($start_time)],['<',strtotime($end_time)],'and']]);
+        }
         return $this
             ->order(['create_time' => 'desc'])
             ->paginate(15, false, [
