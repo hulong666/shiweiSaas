@@ -316,10 +316,10 @@ class Setting extends BaseModel
                 'ket' => 'collectors',
                 'describe' => '租客账单催收设置',
                 'values' => [
-                    'collectors_type' => [10],
-                    'repeat_type' => [],
-                    'time' => 1,
-                    'days' => 3,
+                    'collectors_type' => [10],//催收渠道设置
+                    'repeat_type' => [],//是否重复提醒
+                    'time' => 1,//应收时间前or后提醒  1-前 0-后
+                    'days' => 3,//应收时间前or后几天提醒
                 ]
             ],
         ];

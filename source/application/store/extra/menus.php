@@ -81,6 +81,25 @@ return [
             ],
         ]
     ],
+    'finance' => [
+        'name' => '财务管理',
+        'icon' => 'icon-qiandai',
+        'index' => 'finance/index',
+        'submenu' => [
+            [
+                'name' => '收入成本',
+                'index' => 'finance/index',
+            ],
+            [
+                'name' => '收入汇总',
+                'index' => 'finance/income',
+            ],
+            [
+                'name' => '成本汇总',
+                'index' => 'finance/cost',
+            ],
+        ]
+    ],
     /*'wxapp' => [
         'name' => '小程序',
         'icon' => 'icon-wxapp',
