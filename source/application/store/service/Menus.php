@@ -59,7 +59,9 @@ class Menus
     public function getMenus($routeUri, $group)
     {
         // 菜单列表数据
-        $menus = Config::get('menus');
+//        $menus = Config::get('menus');
+        $ctl = new \app\store\extra\menus;
+        $menus = $ctl->getMenu();
         $this->first($menus, $routeUri, $group);
 //        pre($menus);
         return $menus;
