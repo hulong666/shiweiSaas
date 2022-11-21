@@ -13,22 +13,16 @@
                             <div class="am-u-sm-12 am-u-md-9 am-u-sm-push-3" style="width: 100%;left: 0">
                                 <div class="am fr">
                                     <div class="am-form-group am-fl">
-                                        <?php $type = $request->get('type'); ?>
-                                        <select name="type"
-                                                data-am-selected="{btnSize: 'sm', placeholder: '请选择业务类型'}">
+                                        <?php $city = $request->get('city'); ?>
+                                        <select name="city"
+                                                data-am-selected="{btnSize: 'sm', placeholder: '请选择城市'}">
                                             <option value=""></option>
-                                            <option value="-1"
-                                                <?= $type === '-1' ? 'selected' : '' ?>>全部
-                                            </option>
-                                            <option value="1"
-                                                <?= $type === '1' ? 'selected' : '' ?>>男
-                                            </option>
-                                            <option value="2"
-                                                <?= $type === '2' ? 'selected' : '' ?>>女
-                                            </option>
-                                            <option value="0"
-                                                <?= $type === '0' ? 'selected' : '' ?>>未知
-                                            </option>
+                                            <option value="-1">全部</option>
+                                            <?php foreach ($cityList as $item): ?>
+                                                <option value="<?= $item['city'] ?>"
+                                                    <?= $city == $item['city'] ? 'selected' : '' ?>><?= $item['name'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="am-form-group am-fl">
@@ -36,41 +30,20 @@
                                         <select name="region"
                                                 data-am-selected="{btnSize: 'sm', placeholder: '请选择区域'}">
                                             <option value=""></option>
-                                            <option value="-1"
-                                                <?= $region === '-1' ? 'selected' : '' ?>>全部
-                                            </option>
-                                            <option value="1"
-                                                <?= $region === '1' ? 'selected' : '' ?>>男
-                                            </option>
-                                            <option value="2"
-                                                <?= $region === '2' ? 'selected' : '' ?>>女
-                                            </option>
-                                            <option value="0"
-                                                <?= $region === '0' ? 'selected' : '' ?>>未知
-                                            </option>
+                                            <option value="-1">全部</option>
+                                            <?php foreach ($regionList as $item): ?>
+                                                <option value="<?= $item['region'] ?>"
+                                                    <?= $region == $item['region'] ? 'selected' : '' ?>><?= $item['name'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="am-form-group am-fl">
                                         <?php $property_address = $request->get('property_address'); ?>
-                                        <select name="region"
-                                                data-am-selected="{btnSize: 'sm', placeholder: '请选择物业地址'}">
-                                            <option value=""></option>
-                                            <option value="-1"
-                                                <?= $property_address === '-1' ? 'selected' : '' ?>>全部
-                                            </option>
-                                            <option value="1"
-                                                <?= $property_address === '1' ? 'selected' : '' ?>>男
-                                            </option>
-                                            <option value="2"
-                                                <?= $property_address === '2' ? 'selected' : '' ?>>女
-                                            </option>
-                                            <option value="0"
-                                                <?= $property_address === '0' ? 'selected' : '' ?>>未知
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="am-form-group am-fl" style="width: 80px;">
                                         <div class="am-input-group am-input-group-sm tpl-form-border-form">
+                                            <input type="text" class="am-form-field" name="property_address"
+                                                   placeholder="请输入物业地址"
+                                                   value="<?= $property_address ?>">
                                             <div class="am-input-group-btn">
                                                 <button class="am-btn am-btn-default am-icon-search"
                                                         type="submit"></button>
@@ -98,18 +71,29 @@
                             <?php if (!$list->isEmpty()): foreach ($list as $item): ?>
                                 <tr>
                                     <td class="am-text-middle"><?= $item['id'] ?></td>
-                                    <td class="am-text-middle"><?= $item['city'] ?></td>
-                                    <td class="am-text-middle"><?= $item['region'] ?></td>
-                                    <td class="am-text-middle"><?= $item['property_address'] ?></td>
+                                    <td class="am-text-middle"><?= $item['city']['name'] ?></td>
+                                    <td class="am-text-middle"><?= $item['region']['name'] ?></td>
+                                    <td class="am-text-middle" style="max-width: 200px">
+                                        <div style="display: flex;flex-wrap: wrap">
+                                            <?php foreach ($item['property_address']['value'] as $k => $r): ?>
+                                                <span style="display: block;width: 80px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin: 2px 4px;"
+                                                      class="layui-badge-rim"><?= $r ?></span>
+                                            <?php endforeach;?>
+                                        </div>
+                                    </td>
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">
-                                            <?php if (checkPrivilege('user/recharge')): ?>
+                                            <?php if (checkPrivilege('dictionaries.required.regionalproperty/edit')): ?>
                                                 <a class="j-recharge tpl-table-black-operation-default"
                                                    href="javascript:void(0);"
-                                                   title="用户充值"
+                                                   title="编辑"
+                                                   data-id="<?= $item['id'] ?>"
+                                                   data-city_id="<?= $item['city']['id'] ?>"
+                                                   data-region_id="<?= $item['region']['id'] ?>"
+                                                   data-address="<?= $item['property_address']['text'] ?>"
                                                 >
                                                     <i class="iconfont icon-order-o"></i>
-                                                    明细
+                                                    编辑
                                                 </a>
                                             <?php endif; ?>
                                         </div>
@@ -135,175 +119,23 @@
     </div>
 </div>
 
-<!-- 模板：用户充值 -->
-<script id="tpl-recharge" type="text/template">
-    <div class="am-padding-xs am-padding-top-sm">
-        <form class="am-form tpl-form-line-form" method="post" action="">
-            <div class="j-tabs am-tabs">
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test1">
+</div>
 
-                <ul class="am-tabs-nav am-nav am-nav-tabs">
-                    <li class="am-active"><a href="#tab1">充值余额</a></li>
-                    <li><a href="#tab2">充值积分</a></li>
-                </ul>
+<script src="assets/common/plugins/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
 
-                <div class="am-tabs-bd am-padding-xs">
-
-                    <div class="am-tab-panel am-padding-0 am-active" id="tab1">
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                当前余额
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <div class="am-form--static">{{ balance }}</div>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                充值方式
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="recharge[balance][mode]"
-                                           value="inc" data-am-ucheck checked>
-                                    增加
-                                </label>
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="recharge[balance][mode]" value="dec" data-am-ucheck>
-                                    减少
-                                </label>
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="recharge[balance][mode]" value="final" data-am-ucheck>
-                                    最终金额
-                                </label>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                变更金额
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <input type="number" min="0" class="tpl-form-input"
-                                       placeholder="请输入要变更的金额" name="recharge[balance][money]" value="" required>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                管理员备注
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <textarea rows="2" name="recharge[balance][remark]" placeholder="请输入管理员备注"
-                                          class="am-field-valid"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="am-tab-panel am-padding-0" id="tab2">
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                当前积分
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <div class="am-form--static">{{ points }}</div>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                充值方式
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="recharge[points][mode]"
-                                           value="inc" data-am-ucheck checked>
-                                    增加
-                                </label>
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="recharge[points][mode]" value="dec" data-am-ucheck>
-                                    减少
-                                </label>
-                                <label class="am-radio-inline">
-                                    <input type="radio" name="recharge[points][mode]" value="final" data-am-ucheck>
-                                    最终积分
-                                </label>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                变更数量
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <input type="number" min="0" class="tpl-form-input"
-                                       placeholder="请输入要变更的数量" name="recharge[points][value]" value="" required>
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label class="am-u-sm-3 am-form-label">
-                                管理员备注
-                            </label>
-                            <div class="am-u-sm-8 am-u-end">
-                                <textarea rows="2" name="recharge[points][remark]" placeholder="请输入管理员备注"
-                                          class="am-field-valid"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </form>
-    </div>
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
 </script>
-
 <script>
     $(function () {
-
-        /**
-         * 账户充值
-         */
-        $('.j-recharge').on('click', function () {
-            var $tabs, data = $(this).data();
-            $.showModal({
-                title: '用户充值'
-                , area: '460px'
-                , content: template('tpl-recharge', data)
-                , uCheck: true
-                , success: function ($content) {
-                    $tabs = $content.find('.j-tabs');
-                    $tabs.tabs({noSwipe: 1});
-                }
-                , yes: function ($content) {
-                    $content.find('form').myAjaxSubmit({
-                        url: '<?= url('user/recharge') ?>',
-                        data: {
-                            user_id: data.id,
-                            source: $tabs.data('amui.tabs').activeIndex
-                        }
-                    });
-                    return true;
-                }
-            });
-        });
-
-        /**
-         * 修改会员等级
-         */
-        $('.j-grade').on('click', function () {
-            var data = $(this).data();
-            $.showModal({
-                title: '修改会员等级'
-                , area: '460px'
-                , content: template('tpl-grade', data)
-                , uCheck: true
-                , success: function ($content) {
-                }
-                , yes: function ($content) {
-                    $content.find('form').myAjaxSubmit({
-                        url: '<?= url('user/grade') ?>',
-                        data: {user_id: data.id}
-                    });
-                    return true;
-                }
-            });
-        });
-
         /**
          * 注册操作事件
          * @type {jQuery|HTMLElement}
@@ -331,5 +163,6 @@
         $('.j-delete').delete('user_id', url, '删除后不可恢复，确定要删除吗？');
 
     });
+
 </script>
 

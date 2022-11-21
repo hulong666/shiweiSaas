@@ -120,7 +120,7 @@ class Menus extends Controller {
                 'dictionaries' => [
                     'name' => '用户字典',
                     'icon' => 'icon-marketing',
-                    'index' => 'dictionaries.required.regionalproperty/index',
+                    'index' => 'dictionaries.required.regionalproperty',
                     'submenu' => [
                         [
                             'name' => '必填字段',
@@ -469,15 +469,22 @@ class Menus extends Controller {
                     'index' => 'dictionaries.required.regionalproperty/index',
                     'submenu' => [
                         [
+                            'name' => '用户列表',
+                            'index' => 'user/index',
+                        ],
+                        [
                             'name' => '必填字段',
+                            'active' => true,
                             'submenu' => [
-                                'name' => '区域&楼盘地址',
-                                'index' => 'dictionaries.required.regionalproperty/index',
-                                'uris' => [
-                                    'dictionaries.required.regionalproperty/add',
-                                    'dictionaries.required.regionalproperty/edit',
-                                    'dictionaries.required.regionalproperty/delete',
-                                ]
+                                [
+                                    'name' => '区域&楼盘地址',
+                                    'index' => 'dictionaries.required.regionalproperty/index',
+                                    'uris' => [
+                                        'dictionaries.required.regionalproperty/add',
+                                        'dictionaries.required.regionalproperty/edit',
+                                        'dictionaries.required.regionalproperty/delete',
+                                    ]
+                                ],
                             ]
                         ],
                     ]

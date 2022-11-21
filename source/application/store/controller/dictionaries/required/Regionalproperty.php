@@ -23,12 +23,14 @@ class Regionalproperty extends Controller
      * 区域楼盘列表
      * @param int $city
      * @param int $region
-     * @param null $address
+     * @param null $property_address
      */
-    public function index($city = -1 ,$region = -1 ,$address = null)
+    public function index($city = -1 ,$region = -1 ,$property_address = null)
     {
         $model = new RegionalPropertyModel();
-        $list = $model->getList($city, $region, $address);
-        return $this->fetch('index', compact('list', 'gradeList'));
+        $list = $model->getList($city, $region, $property_address);
+        $cityList = $model->getCityList();
+        $regionList = $model->getRegionList();
+        return $this->fetch('index', compact('list', 'cityList','regionList'));
     }
 }

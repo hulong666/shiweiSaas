@@ -11,6 +11,7 @@
     <link rel="icon" type="image/png" href="assets/common/i/favicon.ico"/>
     <meta name="apple-mobile-web-app-title" content="<?= $setting['store']['values']['name'] ?>"/>
     <link rel="stylesheet" href="assets/common/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/common/plugins/layui/css/layui.css"/>
     <link rel="stylesheet" href="assets/store/css/app.css?v=<?= $version ?>"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_783249_lxk3hovy33n.css">
     <script src="assets/common/js/jquery.min.js"></script>
@@ -123,6 +124,7 @@
 
 </div>
 <script src="assets/common/plugins/layer/layer.js"></script>
+<script src="assets/common/plugins/layui/layui.js"></script>
 <script src="assets/common/js/jquery.form.min.js"></script>
 <script src="assets/common/js/amazeui.min.js"></script>
 <script src="assets/common/js/webuploader.html5only.js"></script>
