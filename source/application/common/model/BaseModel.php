@@ -19,6 +19,12 @@ class BaseModel extends Model
     protected $alias = '';
 
     /**
+     * 判断是否默认添加wxapp_id条件
+     * @var bool
+     */
+    protected $isBase = true;
+
+    /**
      * 模型基类初始化
      */
     public static function init()
@@ -91,7 +97,7 @@ class BaseModel extends Model
      */
     protected function base($query)
     {
-        if (self::$wxapp_id > 0) {
+        if (self::$wxapp_id > 0 && $this->isBase) {
             $query->where($query->getTable() . '.wxapp_id', self::$wxapp_id);
         }
     }

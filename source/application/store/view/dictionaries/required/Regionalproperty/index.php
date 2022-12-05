@@ -119,10 +119,6 @@
     </div>
 </div>
 
-<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-    <input type="text" class="layui-input" id="test1">
-</div>
-
 <script src="assets/common/plugins/layui/layui.js" charset="utf-8"></script>
 <script>
     layui.use('laydate', function(){
