@@ -136,6 +136,15 @@ class Menus extends Controller {
                             ],
                         ]
                     ],
+                    [
+                        'name' => '标签设置',
+                        'index' => 'dictionaries.required.label/index',
+                        'uris' => [
+                            'dictionaries.required.label/add',
+                            'dictionaries.required.label/edit',
+                            'dictionaries.required.label/delete',
+                        ]
+                    ],
                 ]
             ],
             'setting' => [
