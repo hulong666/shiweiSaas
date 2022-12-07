@@ -145,6 +145,15 @@ class Menus extends Controller {
                             'dictionaries.required.label/delete',
                         ]
                     ],
+                    [
+                        'name' => '地铁设置',
+                        'index' => 'dictionaries.required.subway/index',
+                        'uris' => [
+                            'dictionaries.required.subway/add',
+                            'dictionaries.required.subway/edit',
+                            'dictionaries.required.subway/delete',
+                        ]
+                    ],
                 ]
             ],
             'setting' => [

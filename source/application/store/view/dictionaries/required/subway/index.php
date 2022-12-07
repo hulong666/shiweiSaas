@@ -3,7 +3,7 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
             <div class="widget am-cf">
                 <div class="widget-head am-cf">
-                    <div class="widget-title a m-cf">标签列表</div>
+                    <div class="widget-title a m-cf">地铁列表</div>
                 </div>
                 <div class="widget-body am-fr">
                     <!-- 工具栏 -->
@@ -12,39 +12,14 @@
                             <input type="hidden" name="s" value="/<?= $request->pathinfo() ?>">
                             <div class="am-u-sm-12 am-u-md-3">
                                 <div class="am-form-group">
-                                    <?php if (checkPrivilege('dictionaries.required.label/add')): ?>
+                                    <?php if (checkPrivilege('dictionaries.required.subway/add')): ?>
                                         <div class="am-btn-group am-btn-group-xs">
                                             <a class="am-btn am-btn-default am-btn-success"
-                                               href="<?= url('dictionaries.required.label/add') ?>">
+                                               href="<?= url('dictionaries.required.subway/add') ?>">
                                                 <span class="am-icon-plus"></span> 新增
                                             </a>
                                         </div>
                                     <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-9">
-                                <div class="am fr">
-                                    <div class="am-form-group am-fl">
-                                        <?php $status = $request->get('type') ?: null; ?>
-                                        <select name="type"
-                                                data-am-selected="{btnSize: 'sm', placeholder: '标签类型'}">
-                                            <option value=""></option>
-                                            <option value="1"
-                                                <?= $status == 1 ? 'selected' : '' ?>>写字楼
-                                            </option>
-                                            <option value="2"
-                                                <?= $status == 2 ? 'selected' : '' ?>>住宅
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="am-form-group am-fl">
-                                        <div class="am-input-group am-input-group-sm tpl-form-border-form">
-                                            <div class="am-input-group-btn">
-                                                <button class="am-btn am-btn-default am-icon-search"
-                                                        type="submit"></button>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -54,9 +29,9 @@
                          tpl-table-black am-text-nowrap">
                             <thead>
                             <tr>
-                                <th>标签ID</th>
-                                <th>标签名称</th>
-                                <th>标签类型</th>
+                                <th>地铁ID</th>
+                                <th>地铁名称</th>
+                                <th>包含站点</th>
                                 <th>添加时间</th>
                                 <th>操作</th>
                             </tr>
@@ -65,21 +40,23 @@
                             <?php if (!empty($list)): foreach ($list as $item): ?>
                                 <tr>
                                     <td class="am-text-middle"><?= $item['id'] ?></td>
-                                    <td class="am-text-middle"><?= $item['labelname'] ?></td>
-                                    <td class="am-text-middle">
-                                            <span class="am-badge am-badge-<?= $item['type']==1 ? 'success' : 'warning' ?>">
-                                               <?= $item['type']==1 ? '写字楼' : '住宅' ?>
-                                           </span>
-                                    </td>
+                                    <td class="am-text-middle"><?= $item['subwayname'] ?></td>
+                                    <td class="am-text-middle"><?= $item['sitenum'] ?></td>
                                     <td class="am-text-middle"><?= $item['create_time'] ?></td>
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">
-                                            <?php if (checkPrivilege('dictionaries.required.label/edit')): ?>
-                                                <a href="<?= url('dictionaries.required.label/edit', ['id' => $item['id']]) ?>">
+                                            <a href="<?= url('dictionaries.required.subway/sitelist', ['id' => $item['id']]) ?>">
+                                                <i class="am-icon-pencil"></i> 查看站点
+                                            </a>
+                                            <a href="<?= url('dictionaries.required.subway/add', ['fid' => $item['id']]) ?>">
+                                                <i class="am-icon-pencil"></i> 增加站点
+                                            </a>
+                                            <?php if (checkPrivilege('dictionaries.required.subway/edit')): ?>
+                                                <a href="<?= url('dictionaries.required.subway/edit', ['id' => $item['id']]) ?>">
                                                     <i class="am-icon-pencil"></i> 编辑
                                                 </a>
                                             <?php endif; ?>
-                                            <?php if (checkPrivilege('dictionaries.required.label/delete')): ?>
+                                            <?php if (checkPrivilege('dictionaries.required.subway/delete')): ?>
                                                 <a href="javascript:void(0);"
                                                    class="item-delete tpl-table-black-operation-del"
                                                    data-id="<?= $item['id'] ?>">
@@ -112,7 +89,7 @@
     $(function () {
 
         // 删除元素
-        var url = "<?= url('dictionaries.required.label/delete') ?>";
+        var url = "<?= url('dictionaries.required.subway/delete') ?>";
         $('.item-delete').delete('id', url, '删除后不可恢复，确定要删除吗？');
 
     });
