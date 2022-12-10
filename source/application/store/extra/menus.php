@@ -161,6 +161,15 @@ class Menus extends Controller {
                                     'dictionaries.required.trading/delete',
                                 ]
                             ],
+                            [
+                                'name' => '环数列表',
+                                'index' => 'dictionaries.required.ring/index',
+                                'uris' => [
+                                    'dictionaries.required.ring/add',
+                                    'dictionaries.required.ring/edit',
+                                    'dictionaries.required.ring/delete',
+                                ]
+                            ],
                         ]
                     ],
                 ]

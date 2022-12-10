@@ -59,7 +59,7 @@
                                 <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">商圈名字 </label>
                                 <div class="am-u-sm-9 am-u-end">
                                     <input type="text" class="tpl-form-input" name="name"
-                                           value="" placeholder="请输入地铁名称" required>
+                                           value="" placeholder="请输入商圈名字" required>
                                 </div>
                             </div>
 
