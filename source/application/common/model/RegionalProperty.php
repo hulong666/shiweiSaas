@@ -15,5 +15,14 @@ namespace app\common\model;
  */
 class RegionalProperty extends BaseModel
 {
-
+    /**
+     * 详情
+     * @param $shop_id
+     * @return static|null
+     * @throws \think\exception\DbException
+     */
+    public static function detail($id)
+    {
+        return static::get($id);
+    }
 }

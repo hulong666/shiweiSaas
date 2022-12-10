@@ -174,6 +174,22 @@ class Menus extends Controller {
                     ],
                 ]
             ],
+            'resources' => [
+                'name' => '房源管理',
+                'icon' => 'icon-marketing',
+                'index' => 'dictionaries.required.regionalproperty/index',
+                'submenu' => [
+                    [
+                        'name' => '楼盘列表',
+                        'index' => 'dictionaries.required.regionalproperty/index',
+                        'uris' => [
+                            'dictionaries.required.regionalproperty/add',
+                            'dictionaries.required.regionalproperty/edit',
+                            'dictionaries.required.regionalproperty/delete',
+                        ]
+                    ]
+                ]
+            ],
             'setting' => [
                 'name' => '设置',
                 'icon' => 'icon-setting',

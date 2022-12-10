@@ -13,6 +13,16 @@
                             <div class="am-u-sm-12 am-u-md-9 am-u-sm-push-3" style="width: 100%;left: 0">
                                 <div class="am fr">
                                     <div class="am-form-group am-fl">
+                                        <?php if (checkPrivilege('dictionaries.required.regionalproperty/add')): ?>
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a class="am-btn am-btn-default am-btn-success am-radius"
+                                                   href="<?= url('dictionaries.required.regionalproperty/add') ?>">
+                                                    <span class="am-icon-plus"></span> 新增
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="am-form-group am-fl">
                                         <?php $city = $request->get('city'); ?>
                                         <select name="city"
                                                 data-am-selected="{btnSize: 'sm', placeholder: '请选择城市'}">
@@ -84,16 +94,15 @@
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">
                                             <?php if (checkPrivilege('dictionaries.required.regionalproperty/edit')): ?>
-                                                <a class="j-recharge tpl-table-black-operation-default"
-                                                   href="javascript:void(0);"
-                                                   title="编辑"
+                                                <a href="<?= url('dictionaries.required.regionalproperty/edit', ['id' => $item['id']]) ?>">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if (checkPrivilege('dictionaries.required.regionalproperty/delete')): ?>
+                                                <a href="javascript:void(0);"
                                                    data-id="<?= $item['id'] ?>"
-                                                   data-city_id="<?= $item['city']['id'] ?>"
-                                                   data-region_id="<?= $item['region']['id'] ?>"
-                                                   data-address="<?= $item['property_address']['text'] ?>"
-                                                >
-                                                    <i class="iconfont icon-order-o"></i>
-                                                    编辑
+                                                   class="item-delete tpl-table-black-operation-del">
+                                                    <i class="am-icon-trash"></i> 删除
                                                 </a>
                                             <?php endif; ?>
                                         </div>
@@ -155,8 +164,8 @@
         });
 
         // 删除元素
-        var url = "<?= url('user/delete') ?>";
-        $('.j-delete').delete('user_id', url, '删除后不可恢复，确定要删除吗？');
+        var url = "<?= url('dictionaries.required.regionalproperty/delete') ?>";
+        $('.item-delete').delete('id', url, '删除后不可恢复，确定要删除吗？');
 
     });
 

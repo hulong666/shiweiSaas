@@ -99,4 +99,34 @@ class RegionalProperty extends RegionalPropertyModel
         }
         return $cityIds;
     }
+
+    /**
+     * 新增
+     * @param $data
+     * @return false|int
+     */
+    public function add($data)
+    {
+        $data['wxapp_id'] = self::$wxapp_id;
+        return $this->save($data);
+    }
+
+    /**
+     * 编辑
+     * @param $data
+     * @return Ring
+     */
+    public function edit($data)
+    {
+        return $this->update($data,['id'=>$data['id']]);
+    }
+
+    /**
+     * 删除
+     * @return false|int
+     */
+    public function setDelete()
+    {
+        return $this->delete();
+    }
 }
