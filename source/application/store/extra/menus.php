@@ -134,24 +134,33 @@ class Menus extends Controller {
                                     'dictionaries.required.regionalproperty/delete',
                                 ]
                             ],
-                        ]
-                    ],
-                    [
-                        'name' => '标签设置',
-                        'index' => 'dictionaries.required.label/index',
-                        'uris' => [
-                            'dictionaries.required.label/add',
-                            'dictionaries.required.label/edit',
-                            'dictionaries.required.label/delete',
-                        ]
-                    ],
-                    [
-                        'name' => '地铁设置',
-                        'index' => 'dictionaries.required.subway/index',
-                        'uris' => [
-                            'dictionaries.required.subway/add',
-                            'dictionaries.required.subway/edit',
-                            'dictionaries.required.subway/delete',
+                            [
+                                'name' => '标签设置',
+                                'index' => 'dictionaries.required.label/index',
+                                'uris' => [
+                                    'dictionaries.required.label/add',
+                                    'dictionaries.required.label/edit',
+                                    'dictionaries.required.label/delete',
+                                ]
+                            ],
+                            [
+                                'name' => '地铁设置',
+                                'index' => 'dictionaries.required.subway/index',
+                                'uris' => [
+                                    'dictionaries.required.subway/add',
+                                    'dictionaries.required.subway/edit',
+                                    'dictionaries.required.subway/delete',
+                                ]
+                            ],
+                            [
+                                'name' => '商圈设置',
+                                'index' => 'dictionaries.required.trading/index',
+                                'uris' => [
+                                    'dictionaries.required.trading/add',
+                                    'dictionaries.required.trading/edit',
+                                    'dictionaries.required.trading/delete',
+                                ]
+                            ],
                         ]
                     ],
                 ]

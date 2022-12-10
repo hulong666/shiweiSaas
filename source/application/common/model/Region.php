@@ -57,6 +57,23 @@ class Region extends BaseModel
     }
 
     /**
+     * 通过id获取所有直属下级
+     * @param $id
+     * @return array
+     */
+    public static function getChildren($id)
+    {
+        $data = self::getCacheAll();
+        $children = [];
+        foreach ($data as $item) {
+            if($item['pid'] == $id){
+                $children[] = $item;
+            }
+        }
+        return $children;
+    }
+
+    /**
      * 获取所有地区(树状结构)
      * @return mixed
      */
@@ -73,6 +90,16 @@ class Region extends BaseModel
     {
         return static::getCacheData('all');
     }
+
+    /**
+     * 获取省市区
+     * @return mixed
+     */
+    public static function getCacheType($type)
+    {
+        return static::getCacheData($type);
+    }
+
 
     /**
      * 获取所有地区的总数
@@ -124,12 +151,16 @@ class Region extends BaseModel
         }
         // 所有地区
         $allList = $tempList = $this->getAllList();
+        $ssq = $this->getType($allList);
         // 已完成的数据
         $complete = [
             'all' => $allList,
             'tree' => $this->getTreeList($allList),
             'counts' => $this->getCount($allList),
             'version' => self::$version,
+            'province' => $ssq[1],
+            'city' => $ssq[2],
+            'region' => $ssq[3],
         ];
         // 写入缓存
         Cache::tag('cache')->set('region', $complete);
@@ -194,5 +225,19 @@ class Region extends BaseModel
             ->select()
             ->toArray();
         return helper::arrayColumn2Key($list, 'id');
+    }
+
+    /**
+     * 获取省市区街道
+     */
+    public function getType($list)
+    {
+        $data[1] = [];
+        $data[2] = [];
+        $data[3] = [];
+        foreach ($list as $item) {
+            $data[$item['level']][$item['id']] = $item;
+        }
+        return $data;
     }
 }
