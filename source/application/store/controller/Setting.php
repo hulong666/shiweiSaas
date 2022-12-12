@@ -2,6 +2,7 @@
 
 namespace app\store\controller;
 
+use app\store\model\Carousel;
 use app\store\model\Printer as PrinterModel;
 use app\store\model\Setting as SettingModel;
 use app\common\library\sms\Driver as SmsDriver;
@@ -127,6 +128,64 @@ class Setting extends Controller
             return $this->renderSuccess('操作成功');
         }
         return $this->renderError($model->getError() ?: '操作失败');
+    }
+
+    /**
+     * 轮播图列表
+     * @return mixed
+     */
+    public function carousel()
+    {
+        $model = new Carousel();
+        $list = $model->getList();
+        return $this->fetch('carousel', compact('list'));
+    }
+
+    /**
+     * 新增
+     * @return array|bool|mixed
+     */
+    public function carouselAdd()
+    {
+        $model = new Carousel;
+        if (!$this->request->isAjax()) {
+            return $this->fetch('carouseladd');
+        }
+        // 新增记录
+        if ($model->add($this->postData())) {
+            return $this->renderSuccess('添加成功', url('setting/carousel'));
+        }
+        return $this->renderError($model->getError() ?: '添加失败');
+    }
+
+    /**
+     * 编辑
+     * @param $id
+     * @return array|bool|mixed
+     * @throws \think\exception\DbException
+     */
+    public function carouseledit($id)
+    {
+        // 标签详情
+        $model = Carousel::detail($id);
+        if (!$this->request->isAjax()) {
+            return $this->fetch('carouseledit', compact('model'));
+        }
+        // 新增记录
+        if ($model->edit($this->postData())) {
+            return $this->renderSuccess('更新成功', url('setting/carousel'));
+        }
+        return $this->renderError($model->getError() ?: '更新失败');
+    }
+
+    public function carouseldelete($id)
+    {
+        // 标签详情
+        $model = Carousel::detail($id);
+        if (!$model->setDelete()) {
+            return $this->renderError($model->getError() ?: '删除失败');
+        }
+        return $this->renderSuccess('删除成功');
     }
 
 }

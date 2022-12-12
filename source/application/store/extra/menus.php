@@ -213,6 +213,17 @@ class Menus extends Controller {
                         ],
                     ],
                     [
+                        'name' => '轮播图',
+                        'index' => 'setting/carousel',
+                        'uris' => [
+                            'setting/carousel',
+                            'setting/carouselAdd',
+                            'setting/carouselEdit',
+                            'setting/carouselDelete',
+
+                        ],
+                    ],
+                    [
                         'name' => '小程序',
                         'submenu' => [
                             [
