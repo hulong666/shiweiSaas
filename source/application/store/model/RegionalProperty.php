@@ -37,15 +37,7 @@ class RegionalProperty extends RegionalPropertyModel
         return ['id'=>$value,'name'=>Region::getNameById($value)];
     }
 
-    /**
-     * 区域获取器
-     * @param $value
-     * @return array
-     */
-    public function getRegionAttr($value)
-    {
-        return ['id'=>$value,'name'=>Region::getNameById($value)];
-    }
+
     /**
      * 获取区域楼盘列表
      * @param int $city
@@ -54,17 +46,36 @@ class RegionalProperty extends RegionalPropertyModel
      * @return \think\Paginator
      * @throws \think\exception\DbException
      */
-    public function getList($city,$region,$address)
+    public function getList($province,$city,$region,$address)
     {
+        $province > 0 && $this->where('province', '=', (int)$province);
         $city > 0 && $this->where('city', '=', (int)$city);
         $region > 0 && $this->where('region', '=', (int)$region);
-        !empty($address) && $this->where('property_address','like','%'.$address.'%');
-        return $this
+        !empty($address) && $this->where('address','like','%'.$address.'%');
+        return $this->with(['logo'])
             ->order(['create_time' => 'desc'])
             ->paginate(15, false, [
                 'query' => \request()->request()
             ]);
     }
+
+    /**
+     * 获取省选择列表
+     * @return array
+     */
+    public function getProvinceList()
+    {
+        $provinceIds = $this->column('*','province');
+        $provinceIds = array_keys($provinceIds);
+        foreach ($provinceIds as &$provinceId) {
+            $provinceId = [
+                'province' => $provinceId,
+                'name' => Region::getNameById($provinceId),
+            ];
+        }
+        return $provinceIds;
+    }
+
 
     /**
      * 获取城市选择列表
@@ -108,6 +119,7 @@ class RegionalProperty extends RegionalPropertyModel
     public function add($data)
     {
         $data['wxapp_id'] = self::$wxapp_id;
+        $data['subway_id'] = implode(',', $data['subway_id']);
         return $this->save($data);
     }
 
@@ -118,6 +130,7 @@ class RegionalProperty extends RegionalPropertyModel
      */
     public function edit($data)
     {
+        $data['subway_id'] = implode(',', $data['subway_id']);
         return $this->update($data,['id'=>$data['id']]);
     }
 

@@ -21,6 +21,18 @@ class Ring extends RingModel
                 'query' => \request()->request()
             ]);
     }
+    /**
+     * 获取所有列表
+     * @return false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getAllList()
+    {
+        return (new self)->order(['create_time' => 'desc'])
+            ->select();
+    }
 
     /**
      * 新增环数

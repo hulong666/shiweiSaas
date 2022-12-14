@@ -117,7 +117,7 @@ class Menus extends Controller {
                 ]
             ],
             'dictionaries' => [
-                'name' => '用户字典',
+                'name' => '楼盘字典',
                 'icon' => 'icon-marketing',
                 'index' => 'dictionaries.required.regionalproperty/index',
                 'submenu' => [
@@ -126,7 +126,7 @@ class Menus extends Controller {
                         'active' => true,
                         'submenu' => [
                             [
-                                'name' => '区域&楼盘地址',
+                                'name' => '楼盘管理',
                                 'index' => 'dictionaries.required.regionalproperty/index',
                                 'uris' => [
                                     'dictionaries.required.regionalproperty/add',

@@ -3,7 +3,7 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
             <div class="widget am-cf">
                 <div class="widget-head am-cf">
-                    <div class="widget-title am-cf">收入成本</div>
+                    <div class="widget-title am-cf">楼盘列表</div>
                 </div>
                 <div class="widget-body am-fr">
                     <!-- 工具栏 -->
@@ -49,11 +49,11 @@
                                         </select>
                                     </div>
                                     <div class="am-form-group am-fl">
-                                        <?php $property_address = $request->get('property_address'); ?>
+                                        <?php $address = $request->get('address'); ?>
                                         <div class="am-input-group am-input-group-sm tpl-form-border-form">
-                                            <input type="text" class="am-form-field" name="property_address"
-                                                   placeholder="请输入物业地址"
-                                                   value="<?= $property_address ?>">
+                                            <input type="text" class="am-form-field" name="address"
+                                                   placeholder="请输入地址"
+                                                   value="<?= $address ?>">
                                             <div class="am-input-group-btn">
                                                 <button class="am-btn am-btn-default am-icon-search"
                                                         type="submit"></button>
@@ -71,9 +71,11 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>城市</th>
+                                <th>名称</th>
+                                <th>图片</th>
                                 <th>区域</th>
-                                <th>物业地址</th>
+                                <th>地址</th>
+                                <th>商圈</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -81,16 +83,18 @@
                             <?php if (!$list->isEmpty()): foreach ($list as $item): ?>
                                 <tr>
                                     <td class="am-text-middle"><?= $item['id'] ?></td>
-                                    <td class="am-text-middle"><?= $item['city']['name'] ?></td>
-                                    <td class="am-text-middle"><?= $item['region']['name'] ?></td>
+                                    <td class="am-text-middle"><?= $item['title'] ?></td>
+                                    <td class="am-text-middle"><a href="<?= $item['logo']['file_path'] ?>" title="点击查看大图" target="_blank">
+                                            <img src="<?= $item['logo']['file_path'] ?>" width="72" height="72" alt="">
+                                        </a></td>
+                                    <td class="am-text-middle"><?= $item['region']['province'] ?><?= $item['region']['city'] ?><?= $item['region']['region'] ?></td>
                                     <td class="am-text-middle" style="max-width: 200px">
                                         <div style="display: flex;flex-wrap: wrap">
-                                            <?php foreach ($item['property_address']['value'] as $k => $r): ?>
                                                 <span style="display: block;width: 80px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin: 2px 4px;"
-                                                      class="layui-badge-rim"><?= $r ?></span>
-                                            <?php endforeach;?>
+                                                      class="layui-badge-rim"><?= $item['address'] ?></span>
                                         </div>
                                     </td>
+                                    <td class="am-text-middle"><?= $item['area_id']['text'] ?></td>
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">
                                             <?php if (checkPrivilege('dictionaries.required.regionalproperty/edit')): ?>

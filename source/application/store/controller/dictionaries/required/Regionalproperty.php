@@ -11,6 +11,8 @@ namespace app\store\controller\dictionaries\required;
 
 use app\common\model\Region;
 use app\store\controller\Controller;
+use app\store\model\HsArea;
+use app\store\model\Ring;
 use app\store\model\RegionalProperty as RegionalPropertyModel;
 
 /**
@@ -26,13 +28,15 @@ class Regionalproperty extends Controller
      * @param int $region
      * @param null $property_address
      */
-    public function index($city = -1 ,$region = -1 ,$property_address = null)
+    public function index($province = -1 ,$city = -1 ,$region = -1 ,$address = null)
     {
         $model = new RegionalPropertyModel();
-        $list = $model->getList($city, $region, $property_address);
+        $list = $model->getList($province, $city, $region, $address);
+//        var_dump($list->toArray());die;
+        $provinceList = $model->getProvinceList();
         $cityList = $model->getCityList();
         $regionList = $model->getRegionList();
-        return $this->fetch('index', compact('list', 'cityList','regionList'));
+        return $this->fetch('index', compact('list', 'provinceList', 'cityList','regionList'));
     }
 
     /**
@@ -43,9 +47,10 @@ class Regionalproperty extends Controller
     {
         $model = new RegionalPropertyModel;
         if (!$this->request->isAjax()) {
-            $city = Region::getCacheType('city');
-            $regin = [];
-            return $this->fetch('add',compact('city','regin'));
+            $area = HsArea::getAllList();
+            $ring = Ring::getAllList();
+            $subway = (new \app\store\model\Subway())->getAllList();
+            return $this->fetch('add',compact('area', 'ring', 'subway'));
         }
         // 新增记录
         if ($model->add($this->postData())) {
@@ -65,9 +70,10 @@ class Regionalproperty extends Controller
         // 标签详情
         $model = RegionalPropertyModel::detail($id);
         if (!$this->request->isAjax()) {
-            $city = Region::getCacheType('city');
-            $regin = Region::getChildren($model['city']['id']);
-            return $this->fetch('edit', compact('model','city','regin'));
+            $area = HsArea::getAllList();
+            $ring = Ring::getAllList();
+            $subway = (new \app\store\model\Subway())->getAllList();
+            return $this->fetch('edit', compact('model','area', 'ring', 'subway'));
         }
         // 新增记录
         if ($model->edit($this->postData())) {
@@ -90,5 +96,18 @@ class Regionalproperty extends Controller
             return $this->renderError($model->getError() ?: '删除失败');
         }
         return $this->renderSuccess('删除成功');
+    }
+
+    /**
+     * 获取省市区下的商圈
+     * @return array
+     */
+    public function getAreaData()
+    {
+        $pid = $this->request->param('pid');
+        $cid = $this->request->param('cid');
+        $rid = $this->request->param('rid');
+        $data = HsArea::getAllList($pid, $cid, $rid);
+        return $this->renderSuccess('获取成功','',$data);
     }
 }
