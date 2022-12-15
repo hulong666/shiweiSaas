@@ -28,6 +28,32 @@ class Subway extends SubwayModel
     }
 
     /**
+     * 获取所有列表数据
+     * @param null $status
+     * @return void|array
+     * @throws \think\exception\DbException
+     */
+    public function getAllList()
+    {
+        $line = $this->where('type', '=', '1')
+            ->order(['create_time' => 'desc'])
+            ->select()->toArray();
+        $site = $this->where('type', '=', '2')
+            ->order(['create_time' => 'desc'])
+            ->select()->toArray();
+        foreach ($line as &$v) {
+            isset($v['child']) ?:$v['child'] = [];
+            foreach ($site as $val) {
+                if ($val['fid'] == $v['id']) {
+                    $v['child'][] = $val;
+                }
+            }
+        }
+        unset($v);
+        return $line;
+    }
+
+    /**
      * 获取地铁站点列表数据
      * @param null $status
      * @return \think\Paginator

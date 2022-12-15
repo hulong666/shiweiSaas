@@ -41,6 +41,22 @@ class HsArea extends HsAreaModel
     }
 
     /**
+     * 获取所有商圈列表
+     * @return false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getAllList($province = null, $city = null, $region = null)
+    {
+        !empty($province) && (new self)->where('province_id', '=', $province);
+        !empty($city) && (new self)->where('city_id', '=', $city);
+        !empty($region) && (new self)->where('region_id', '=', $region);
+        return (new self)->order(['create_time' => 'desc'])
+            ->select();
+    }
+
+    /**
      * 新增商圈
      * @param $data
      * @return false|int
