@@ -14,6 +14,7 @@ use think\Session;
 class BaseModel extends Model
 {
     public static $wxapp_id;
+    public static $water_id;
     public static $base_url;
 
     protected $alias = '';
@@ -22,7 +23,7 @@ class BaseModel extends Model
      * 判断是否默认添加wxapp_id条件
      * @var bool
      */
-    protected $isBase = true;
+    public static $isBase = true;
 
     /**
      * 模型基类初始化
@@ -34,6 +35,8 @@ class BaseModel extends Model
         self::$base_url = base_url();
         // 后期静态绑定wxapp_id
         self::bindWxappId();
+
+//        self::$water_id = se
     }
 
     /**
@@ -60,7 +63,9 @@ class BaseModel extends Model
     {
         if ($module = self::getCalledModule()) {
             $callfunc = 'set' . ucfirst($module) . 'WxappId';
+            $callfunc1 = 'set' . ucfirst($module) . 'WaterId';
             method_exists(new self, $callfunc) && self::$callfunc();
+            method_exists(new self, $callfunc1) && self::$callfunc1();
         }
     }
 
@@ -72,6 +77,11 @@ class BaseModel extends Model
         $session = Session::get('yoshop_store');
         self::$wxapp_id = $session['wxapp']['wxapp_id'];
     }
+    protected static function setStoreWaterId()
+    {
+        $session = Session::get('yoshop_store');
+        self::$water_id = isset($session['user']['water_user_id']) ? $session['user']['water_user_id'] : 0;
+    }
 
     /**
      * 设置wxapp_id (api模块)
@@ -80,6 +90,11 @@ class BaseModel extends Model
     {
         $request = Request::instance();
         self::$wxapp_id = $request->param('wxapp_id');
+    }
+    protected static function setAPIWaterId()
+    {
+//        $session = Session::get('yoshop_store');
+//        self::$water_id = $session['user']['water_user_id'];
     }
 
     /**
@@ -90,6 +105,11 @@ class BaseModel extends Model
         $request = Request::instance();
         self::$wxapp_id = $request->param('wxapp_id');
     }
+    protected static function setWeb_apiWaterId()
+    {
+//        $request = Request::instance();
+//        self::$wxapp_id = $request->param('wxapp_id');
+    }
 
     /**
      * 定义全局的查询范围
@@ -97,7 +117,7 @@ class BaseModel extends Model
      */
     protected function base($query)
     {
-        if (self::$wxapp_id > 0 && $this->isBase) {
+        if (self::$wxapp_id > 0 && self::$isBase) {
             $query->where($query->getTable() . '.wxapp_id', self::$wxapp_id);
         }
     }
