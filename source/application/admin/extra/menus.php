@@ -58,4 +58,18 @@ return [
             ],
         ],
     ],
+    'water' => [
+        'name' => '送水管理',
+        'icon' => 'icon-shezhi',
+        'submenu' => [
+            [
+                'name' => '账号列表',
+                'index' => 'water.user/userList'
+            ],
+            [
+                'name' => '订单列表',
+                'index' => 'water.order/index'
+            ],
+        ]
+    ]
 ];
