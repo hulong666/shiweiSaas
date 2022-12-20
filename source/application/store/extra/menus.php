@@ -177,17 +177,26 @@ class Menus extends Controller {
             'resources' => [
                 'name' => '房源管理',
                 'icon' => 'icon-marketing',
-                'index' => 'dictionaries.required.regionalproperty/index',
+                'index' => 'houses.office/index',
                 'submenu' => [
                     [
-                        'name' => '楼盘列表',
-                        'index' => 'dictionaries.required.regionalproperty/index',
+                        'name' => '写字楼列表',
+                        'index' => 'houses.office/index',
                         'uris' => [
-                            'dictionaries.required.regionalproperty/add',
-                            'dictionaries.required.regionalproperty/edit',
-                            'dictionaries.required.regionalproperty/delete',
+                            'houses.office/add',
+                            'houses.office/edit',
+                            'houses.office/delete',
                         ]
-                    ]
+                    ],
+                    [
+                        'name' => '住宅列表',
+                        'index' => 'houses.office/index',
+                        'uris' => [
+                            'houses.office/add',
+                            'houses.office/edit',
+                            'houses.office/delete',
+                        ]
+                    ],
                 ]
             ],
             'setting' => [
@@ -209,17 +218,6 @@ class Menus extends Controller {
                         'uris' => [
                             'setting/tplmsg',
                             'setting.help/tplmsg'
-
-                        ],
-                    ],
-                    [
-                        'name' => '轮播图',
-                        'index' => 'setting/carousel',
-                        'uris' => [
-                            'setting/carousel',
-                            'setting/carouselAdd',
-                            'setting/carouselEdit',
-                            'setting/carouselDelete',
 
                         ],
                     ],

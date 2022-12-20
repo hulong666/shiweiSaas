@@ -26,13 +26,12 @@ class Regionalproperty extends Controller
      * 区域楼盘列表
      * @param int $city
      * @param int $region
-     * @param null $property_address
+     * @param null $address
      */
-    public function index($province = -1 ,$city = -1 ,$region = -1 ,$address = null)
+    public function index($province_id = -1 ,$city_id = -1 ,$region_id = -1 ,$address = null)
     {
         $model = new RegionalPropertyModel();
-        $list = $model->getList($province, $city, $region, $address);
-//        var_dump($list->toArray());die;
+        $list = $model->getList($province_id, $city_id, $region_id, $address);
         $provinceList = $model->getProvinceList();
         $cityList = $model->getCityList();
         $regionList = $model->getRegionList();
@@ -69,6 +68,7 @@ class Regionalproperty extends Controller
     {
         // 标签详情
         $model = RegionalPropertyModel::detail($id);
+        $model['subway_id'] = explode(',', $model['subway_id']);
         if (!$this->request->isAjax()) {
             $area = HsArea::getAllList();
             $ring = Ring::getAllList();

@@ -46,13 +46,13 @@
                                 <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require"> 楼盘区域 </label>
                                 <div class="am-u-sm-9 am-u-end">
                                     <div class="x-region-select" data-region-selected>
-                                        <select name="province" id="province" data-province data-id="<?= $model['province'] ?>" required>
+                                        <select name="province_id" id="province" data-province data-id="<?= $model['province_id'] ?>" required>
                                             <option value="">请选择省份</option>
                                         </select>
-                                        <select name="city" id="city" data-city data-id="<?= $model['city'] ?>" required>
+                                        <select name="city_id" id="city" data-city data-id="<?= $model['city_id'] ?>" required>
                                             <option value="">请选择城市</option>
                                         </select>
-                                        <select name="region" id="region" data-region data-id="<?= $model['region'] ?>" required>
+                                        <select name="region_id" id="region" data-region data-id="<?= $model['region_id'] ?>" required>
                                             <option value="">请选择地区</option>
                                         </select>
                                     </div>
@@ -74,7 +74,7 @@
                                             data-am-selected="{btnSize: 'sm', placeholder: '请选择商圈',searchBox: 1,maxHeight: 100}">
                                         <option value=""></option>
                                         <?php foreach ($area as $item): ?>
-                                            <option value="<?= $item['id'] ?>" <?= $model['area_id'] == $item['id'] ? 'selected' : '' ?>>
+                                            <option value="<?= $item['id'] ?>" <?= $model['area_id']['value'] == $item['id'] ? 'selected' : '' ?>>
                                                 <?= $item['name'] ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -101,12 +101,12 @@
                                     <?php foreach ($subway as $item): ?>
                                         <div class="am-u-sm-9 am-u-end">
                                             <label class="am-checkbox-inline">
-                                                <input type="checkbox" name="subway[] id="subway<?= $item['id'] ?>"><?= $item['subwayname'] ?>
+                                                <input type="checkbox" name="subway_id[] id="subway<?= $item['id'] ?>" <?= in_array($item['id'], $model['subway_id']) ? 'checked' : '' ?>><?= $item['subwayname'] ?>
                                             </label>
                                             <div class="am-u-end panel-dealer__content">
                                                 <?php foreach ($item['child'] as $child): ?>
                                                     <label class="am-checkbox-inline">
-                                                        <input type="checkbox" name="subway[] subway<?= $item['id'] ?>" value="<?= $child['id']?>"><?= $child['subwayname'] ?>
+                                                        <input type="checkbox" name="subway_id[]" id="subway<?= $item['id'] ?>" value="<?= $child['id']?>" <?= in_array($child['id'], $model['subway_id']) ? 'checked' : '' ?>><?= $child['subwayname'] ?>
                                                     </label>
                                                 <?php endforeach; ?>
                                             </div>

@@ -48,9 +48,9 @@ class RegionalProperty extends RegionalPropertyModel
      */
     public function getList($province,$city,$region,$address)
     {
-        $province > 0 && $this->where('province', '=', (int)$province);
-        $city > 0 && $this->where('city', '=', (int)$city);
-        $region > 0 && $this->where('region', '=', (int)$region);
+        $province > 0 && $this->where('province_id', '=', (int)$province);
+        $city > 0 && $this->where('city_id', '=', (int)$city);
+        $region > 0 && $this->where('region_id', '=', (int)$region);
         !empty($address) && $this->where('address','like','%'.$address.'%');
         return $this->with(['logo'])
             ->order(['create_time' => 'desc'])
@@ -65,7 +65,7 @@ class RegionalProperty extends RegionalPropertyModel
      */
     public function getProvinceList()
     {
-        $provinceIds = $this->column('*','province');
+        $provinceIds = $this->column('*','province_id');
         $provinceIds = array_keys($provinceIds);
         foreach ($provinceIds as &$provinceId) {
             $provinceId = [
@@ -83,7 +83,7 @@ class RegionalProperty extends RegionalPropertyModel
      */
     public function getCityList()
     {
-        $cityIds = $this->column('*','city');
+        $cityIds = $this->column('*','city_id');
         $cityIds = array_keys($cityIds);
         foreach ($cityIds as &$cityId) {
             $cityId = [
@@ -100,7 +100,7 @@ class RegionalProperty extends RegionalPropertyModel
      */
     public function getRegionList()
     {
-        $cityIds = $this->column('*','region');
+        $cityIds = $this->column('*','region_id');
         $cityIds = array_keys($cityIds);
         foreach ($cityIds as &$cityId) {
             $cityId = [

@@ -42,9 +42,9 @@ class RegionalProperty extends BaseModel
     public function getRegionAttr($value, $data)
     {
         return [
-            'province' => RegionModel::getNameById($data['province']),
-            'city' => RegionModel::getNameById($data['city']),
-            'region' => $data['region'] == 0 ? '' : RegionModel::getNameById($data['region']),
+            'province' => RegionModel::getNameById($data['province_id']),
+            'city' => RegionModel::getNameById($data['city_id']),
+            'region' => $data['region_id'] == 0 ? '' : RegionModel::getNameById($data['region_id']),
         ];
     }
 

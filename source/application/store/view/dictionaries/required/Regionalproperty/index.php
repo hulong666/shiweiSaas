@@ -23,30 +23,17 @@
                                         <?php endif; ?>
                                     </div>
                                     <div class="am-form-group am-fl">
-                                        <?php $city = $request->get('city'); ?>
-                                        <select name="city"
-                                                data-am-selected="{btnSize: 'sm', placeholder: '请选择城市'}">
-                                            <option value=""></option>
-                                            <option value="-1">全部</option>
-                                            <?php foreach ($cityList as $item): ?>
-                                                <option value="<?= $item['city'] ?>"
-                                                    <?= $city == $item['city'] ? 'selected' : '' ?>><?= $item['name'] ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="am-form-group am-fl">
-                                        <?php $region = $request->get('region'); ?>
-                                        <select name="region"
-                                                data-am-selected="{btnSize: 'sm', placeholder: '请选择区域'}">
-                                            <option value=""></option>
-                                            <option value="-1">全部</option>
-                                            <?php foreach ($regionList as $item): ?>
-                                                <option value="<?= $item['region'] ?>"
-                                                    <?= $region == $item['region'] ? 'selected' : '' ?>><?= $item['name'] ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                        <div class="am-input-group am-input-group-sm tpl-form-border-form" data-region-selected>
+                                            <select name="province_id" id="province" data-province data-id="<?= $request->get('province_id'); ?>">
+                                                <option value="">请选择省份</option>
+                                            </select>
+                                            <select name="city_id" id="city" data-city data-id="<?= $request->get('city_id') ?>">
+                                                <option value="">请选择城市</option>
+                                            </select>
+                                            <select name="region_id" id="region" data-region data-id="<?= $request->get('region_id') ?>">
+                                                <option value="">请选择地区</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="am-form-group am-fl">
                                         <?php $address = $request->get('address'); ?>
@@ -133,40 +120,9 @@
 </div>
 
 <script src="assets/common/plugins/layui/layui.js" charset="utf-8"></script>
-<script>
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
+<script src="assets/store/js/select.region.js"></script>
 
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#test1' //指定元素
-        });
-    });
-</script>
 <script>
-    $(function () {
-        /**
-         * 注册操作事件
-         * @type {jQuery|HTMLElement}
-         */
-        var $dropdown = $('.j-opSelect');
-        $dropdown.dropdown();
-        $dropdown.on('click', 'li a', function () {
-            var $this = $(this);
-            var id = $this.parent().parent().data('id');
-            var type = $this.data('type');
-            if (type === 'delete') {
-                layer.confirm('删除后不可恢复，确定要删除吗？', function (index) {
-                    $.post("index.php?s=/store/apps.dealer.user/delete", {dealer_id: id}, function (result) {
-                        result.code === 1 ? $.show_success(result.msg, result.url)
-                            : $.show_error(result.msg);
-                    });
-                    layer.close(index);
-                });
-            }
-            $dropdown.dropdown('close');
-        });
-
         // 删除元素
         var url = "<?= url('dictionaries.required.regionalproperty/delete') ?>";
         $('.item-delete').delete('id', url, '删除后不可恢复，确定要删除吗？');
