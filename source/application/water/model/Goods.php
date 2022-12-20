@@ -47,6 +47,7 @@ class Goods extends WGoods
      */
     public function getGoodsTotal($where = [])
     {
+        self::$isBase = false;
         return $this->where($where)->count();
     }
 

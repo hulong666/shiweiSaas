@@ -23,6 +23,7 @@ class Order extends WOrder
 
     public function getList($dataType, $query = [])
     {
+        self::$isBase = false;
         // 检索查询条件
         !empty($query) && $this->setWhere($query);
         // 获取数据列表
