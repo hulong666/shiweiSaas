@@ -46,6 +46,11 @@ class Cache extends Controller
                 'key' => 'setting_' . $wxapp_id,
                 'name' => '商城设置'
             ],
+            'residence_setting' => [
+                'type' => 'cache',
+                'key' => 'residence_setting_' . $wxapp_id,
+                'name' => '住宅设置'
+            ],
             'wxapp' => [
                 'type' => 'cache',
                 'key' => 'wxapp_' . $wxapp_id,

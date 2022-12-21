@@ -17,7 +17,14 @@ class HsOffice extends BaseModel
 {
     protected $name = 'hs_office';
 
-
+    /**
+     * 关联楼盘表
+     * @return \think\model\relation\HasOne
+     */
+    public function property()
+    {
+        return $this->hasOne('RegionalProperty','id','property_id');
+    }
 
     /**
      * 详情

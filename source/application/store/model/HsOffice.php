@@ -9,6 +9,7 @@
 namespace app\store\model;
 
 use app\common\model\HsOffice as HsOfficeModel;
+use app\common\model\UploadFile;
 
 /**
  * 写字楼模型
@@ -17,6 +18,19 @@ use app\common\model\HsOffice as HsOfficeModel;
  */
 class HsOffice extends HsOfficeModel
 {
+    //图片获取器
+    public function getHousePicAttr($value)
+    {
+        if($value == ''){
+            return [];
+        }
+        $ids = explode(',',$value);
+        $images = [];
+        foreach ($ids as $id) {
+            $images[] = UploadFile::detail($id)['file_path'];
+        }
+        return $images;
+    }
 
     /**
      * 获取列表
@@ -26,6 +40,7 @@ class HsOffice extends HsOfficeModel
     public function getList()
     {
         return $this
+            ->with(['property'])
             ->order(['create_time' => 'desc'])
             ->paginate(15, false, [
                 'query' => \request()->request()

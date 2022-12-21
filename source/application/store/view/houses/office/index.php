@@ -41,9 +41,16 @@
                                 <tr>
                                     <td class="am-text-middle"><?= $item['id'] ?></td>
                                     <td class="am-text-middle">
+                                        <?php if (empty($item['house_pic'])) : ?>
+                                        无
+                                        <?php else : ?>
+                                        <img src="<?= $item['house_pic'][0] ?>" alt="" height="60">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="am-text-middle">
                                         <span><?= $item['title'] ?></span>
                                     </td>
-                                    <td class="am-text-middle"><?= $item['property_name'] ?></td>
+                                    <td class="am-text-middle"><?= $item['property']['title'] ?></td>
                                     <td class="am-text-middle"><?= $item['price'] ?>/月</td>
                                     <td class="am-text-middle">
                                         <span>面积：<?= $item['house_area'] ?>m²</span>

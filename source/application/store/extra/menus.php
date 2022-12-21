@@ -129,6 +129,7 @@ class Menus extends Controller {
                                 'name' => '楼盘管理',
                                 'index' => 'dictionaries.required.regionalproperty/index',
                                 'uris' => [
+                                    'dictionaries.required.regionalproperty/index',
                                     'dictionaries.required.regionalproperty/add',
                                     'dictionaries.required.regionalproperty/edit',
                                     'dictionaries.required.regionalproperty/delete',
@@ -138,6 +139,7 @@ class Menus extends Controller {
                                 'name' => '标签设置',
                                 'index' => 'dictionaries.required.label/index',
                                 'uris' => [
+                                    'dictionaries.required.label/index',
                                     'dictionaries.required.label/add',
                                     'dictionaries.required.label/edit',
                                     'dictionaries.required.label/delete',
@@ -147,6 +149,7 @@ class Menus extends Controller {
                                 'name' => '地铁设置',
                                 'index' => 'dictionaries.required.subway/index',
                                 'uris' => [
+                                    'dictionaries.required.subway/index',
                                     'dictionaries.required.subway/add',
                                     'dictionaries.required.subway/edit',
                                     'dictionaries.required.subway/delete',
@@ -156,6 +159,7 @@ class Menus extends Controller {
                                 'name' => '商圈设置',
                                 'index' => 'dictionaries.required.trading/index',
                                 'uris' => [
+                                    'dictionaries.required.trading/index',
                                     'dictionaries.required.trading/add',
                                     'dictionaries.required.trading/edit',
                                     'dictionaries.required.trading/delete',
@@ -165,6 +169,7 @@ class Menus extends Controller {
                                 'name' => '环数列表',
                                 'index' => 'dictionaries.required.ring/index',
                                 'uris' => [
+                                    'dictionaries.required.ring/index',
                                     'dictionaries.required.ring/add',
                                     'dictionaries.required.ring/edit',
                                     'dictionaries.required.ring/delete',
@@ -174,30 +179,49 @@ class Menus extends Controller {
                     ],
                 ]
             ],
-            'resources' => [
+            'houses' => [
                 'name' => '房源管理',
-                'icon' => 'icon-marketing',
+                'icon' => 'icon-setting',
                 'index' => 'houses.office/index',
                 'submenu' => [
                     [
                         'name' => '写字楼列表',
                         'index' => 'houses.office/index',
                         'uris' => [
+                            'houses.office/index',
                             'houses.office/add',
                             'houses.office/edit',
                             'houses.office/delete',
                         ]
                     ],
                     [
-                        'name' => '住宅列表',
-                        'index' => 'houses.office/index',
-                        'uris' => [
-                            'houses.office/add',
-                            'houses.office/edit',
-                            'houses.office/delete',
+                        'name' => '住宅管理',
+                        'submenu' => [
+                            [
+                                'name' => '住宅列表',
+                                'index' => 'houses.residence/index',
+                                'uris' => [
+                                    'houses.residence/index',
+                                    'houses.residence/edit',
+                                    'houses.residence/delete',
+                                    'houses.residence/frame',
+                                ]
+                            ],
+                            [
+                                'name' => '发布设置',
+                                'index' => 'houses.setting/release',
+                            ],
+                            [
+                                'name' => '刷新设置',
+                                'index' => 'houses.setting/refresh',
+                            ],
+                            [
+                                'name' => '置顶设置',
+                                'index' => 'houses.setting/topping'
+                            ],
                         ]
                     ],
-                ]
+                ],
             ],
             'setting' => [
                 'name' => '设置',
