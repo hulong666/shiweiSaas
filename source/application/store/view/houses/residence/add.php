@@ -23,6 +23,7 @@
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
+                                    <input type="hidden" name="name" id="name" value="">
                                 </div>
                             </div>
 
@@ -81,7 +82,7 @@
                                                     data-am-selected="{btnSize: 'sm', placeholder: '请选择楼盘',searchBox: 1,maxHeight: 100}">
                                                 <?php for ($i = 0; $i <= 10; $i++): ?>
                                                     <option value="<?= $i ?>" <?= $model['house_type'][0] == $i ? 'selected' : '' ?>>
-                                                        <?= $i.'室' ?>
+                                                        <?= $i . '室' ?>
                                                     </option>
                                                 <?php endfor; ?>
                                             </select>
@@ -93,7 +94,7 @@
                                                     data-am-selected="{btnSize: 'sm', placeholder: '请选择楼盘',searchBox: 1,maxHeight: 100}">
                                                 <?php for ($i = 0; $i <= 10; $i++): ?>
                                                     <option value="<?= $i ?>" <?= $model['house_type'][1] == $i ? 'selected' : '' ?>>
-                                                        <?= $i.'厅' ?>
+                                                        <?= $i . '厅' ?>
                                                     </option>
                                                 <?php endfor; ?>
                                             </select>
@@ -105,7 +106,7 @@
                                                     data-am-selected="{btnSize: 'sm', placeholder: '请选择楼盘',searchBox: 1,maxHeight: 100}">
                                                 <?php for ($i = 0; $i <= 10; $i++): ?>
                                                     <option value="<?= $i ?>" <?= $model['house_type'][2] == $i ? 'selected' : '' ?>>
-                                                        <?= $i.'卫' ?>
+                                                        <?= $i . '卫' ?>
                                                     </option>
                                                 <?php endfor; ?>
                                             </select>
@@ -201,9 +202,9 @@
                                 <div class="am-u-sm-9 am-u-end">
                                     <select name="build_number" id="build_number"
                                             data-am-selected="{btnSize: 'sm', placeholder: '请选择栋数',searchBox: 1,maxHeight: 100}">
-                                        <?php for ($i = 1;$i <= 60;$i++): ?>
+                                        <?php for ($i = 1; $i <= 60; $i++): ?>
                                             <option value="<?= $i ?>" <?= $model['build_number'] == $i ? 'selected' : '' ?>>
-                                                <?= $i.'栋' ?>
+                                                <?= $i . '栋' ?>
                                             </option>
                                         <?php endfor; ?>
                                     </select>
@@ -214,9 +215,9 @@
                                 <div class="am-u-sm-9 am-u-end">
                                     <select name="unit" id="unit"
                                             data-am-selected="{btnSize: 'sm', placeholder: '请选择单元',searchBox: 1,maxHeight: 100}">
-                                        <?php for ($i = 1;$i <= 60;$i++): ?>
+                                        <?php for ($i = 1; $i <= 60; $i++): ?>
                                             <option value="<?= $i ?>" <?= $model['unit'] == $i ? 'selected' : '' ?>>
-                                                <?= $i.'单元' ?>
+                                                <?= $i . '单元' ?>
                                             </option>
                                         <?php endfor; ?>
                                     </select>
@@ -227,9 +228,9 @@
                                 <div class="am-u-sm-9 am-u-end">
                                     <select name="floor" id="floor"
                                             data-am-selected="{btnSize: 'sm', placeholder: '请选择楼层',searchBox: 1,maxHeight: 100}">
-                                        <?php for ($i = 1;$i <= 60;$i++): ?>
+                                        <?php for ($i = 1; $i <= 60; $i++): ?>
                                             <option value="<?= $i ?>" <?= $model['floor'] == $i ? 'selected' : '' ?>>
-                                                <?= $i.'层' ?>
+                                                <?= $i . '层' ?>
                                             </option>
                                         <?php endfor; ?>
                                     </select>
@@ -269,7 +270,7 @@
                                 <label class="am-u-sm-3 am-u-lg-2 am-form-label">房屋配置 </label>
                                 <?php foreach ($configure as $k => $v): ?>
                                     <label class="am-checkbox-inline">
-                                        <input type="checkbox" name="configuration" value="<?= $v ?>" <?= in_array($v,$model['configuration']) ? 'checked' : '' ?>> <?= $v ?>
+                                        <input type="checkbox" name="configuration" value="<?= $v ?>"> <?= $v ?>
                                     </label>
                                 <?php endforeach; ?>
                             </div>
@@ -278,7 +279,8 @@
                                 <label class="am-u-sm-3 am-u-lg-2 am-form-label">标签 </label>
                                 <?php foreach ($label as $item): ?>
                                     <label class="am-checkbox-inline">
-                                        <input type="checkbox" name="label" value="<?= $item['id'] ?>" <?= in_array($item['id'],$model['label']) ? 'checked' : '' ?>> <?= $item['labelname'] ?>
+                                        <input type="checkbox" name="label"
+                                               value="<?= $item['id'] ?>"> <?= $item['labelname'] ?>
                                     </label>
                                 <?php endforeach; ?>
                             </div>
@@ -292,16 +294,7 @@
                                             <i class="am-icon-cloud-upload"></i> 选择图片
                                         </button>
                                         <div class="uploader-list am-cf">
-                                            <?php foreach ($model['house_pic'] as $key => $item): ?>
-                                                <div class="file-item">
-                                                    <a href="<?= $item['file_path'] ?>" title="点击查看大图" target="_blank">
-                                                        <img src="<?= $item['file_path'] ?>">
-                                                    </a>
-                                                    <input type="hidden" name="house_pic[]"
-                                                           value="<?= $item['file_id'] ?>">
-                                                    <i class="iconfont icon-shanchu file-item-delete"></i>
-                                                </div>
-                                            <?php endforeach; ?>
+
                                         </div>
                                     </div>
                                     <div class="help-block am-margin-top-sm">
@@ -311,6 +304,7 @@
                             </div>
 
                             <div class="am-form-group">
+
                                 <label class="am-u-sm-3 am-u-lg-2 am-form-label form-require">视频 </label>
                                 <div class="am-u-sm-9 am-u-end video_box">
                                     <div class="am-form-group am-form-file ttt">
@@ -320,15 +314,8 @@
                                         <input type="file" multiple>
                                     </div>
                                     <!-- 加载编辑器的容器 -->
-                                    <video class="videoobj" width="320" height="240" controls>
-                                        <source src="<?= $model['house_vedio'] ?>" type="video/mp4">
-                                        <object data="<?= $model['house_vedio'] ?>" width="320" height="240">
-                                            <embed src="<?= $model['house_vedio'] ?>" width="320" height="240">
-                                        </object>
-                                    </video>
+                                    <input type="hidden" name="house_vedio" id="house_vedio">
                                 </div>
-                                <!-- 加载编辑器的容器 -->
-                                <input type="hidden" name="house_vedio" id="house_vedio">
                             </div>
 
                             <div class="am-form-group">
@@ -350,7 +337,6 @@
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3 am-margin-top-lg">
-                                    <input type="hidden" name="id" value="<?= $model['id'] ?>">
                                     <button type="submit" class="j-submit am-btn am-btn-secondary">提交
                                     </button>
                                 </div>
@@ -397,6 +383,17 @@
             }
         });
 
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+
+        $('#house_id').change(() => {
+            $('#name').val($('#house_id').find('option:selected').text())
+        })
+
         $('input[type="file"]').on('change', function () {
                 var file = this.files[0];
                 var fileName = file.name;
@@ -413,7 +410,6 @@
                         processData: false,
                         contentType: false,
                         success: function (json) {
-                            console.log(json)
                             $('#house_vedio').val(json.data.src);
                         }
                     });
@@ -431,12 +427,13 @@
         )
         ;
 
-        /**
-         * 表单验证提交
-         * @type {*}
-         */
-        $('#my-form').superForm();
 
-
+        /*$('input[type="file"]').closest('div').hover(function(){
+            if($(this).find('input[type="file"]').attr('src')){
+                $('.ttt').append('<div class="imgView" ><img width="80" src="'+$(this).find('input[type="file"]').attr('src')+'"></div>')
+            }
+        },function(){
+            $('.imgView').remove();
+        });*/
     });
 </script>

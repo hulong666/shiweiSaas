@@ -18,7 +18,6 @@ class HsResidence extends Residence
     public function getList()
     {
         return $this
-            ->with(['images'])
             ->order(['create_time' => 'desc'])
             ->paginate(15, false, [
                 'query' => \request()->request()
@@ -26,20 +25,39 @@ class HsResidence extends Residence
     }
 
     /**
-     * 商品编辑
+     * 新增住宅
+     * @param $data
+     * @return false|int
+     */
+    public function add($data)
+    {
+        $data['wxapp_id'] = self::$wxapp_id;
+        $data['house_icon'] = isset($data['house_pic'][0]) ? $data['house_pic'][0] : '';
+        $data['house_pic'] = implode(',', $data['house_pic']);
+        $data['house_type'] = $data['room'].','.$data['hall'].','.$data['toilet'];
+        $data['name'] = trim($data['name']);
+        unset($data['room']);
+        unset($data['hall']);
+        unset($data['toilet']);
+        return $this->save($data);
+    }
+
+    /**
+     * 住宅编辑
      * @param $data
      * @return false|mixed
      */
     public function edit($data)
     {
         return $this->transaction(function () use ($data) {
-            $images = $data['images'];
-            unset($data['images']);
-            //获取删除图片的id集合
-            $delIDs = HsResidenceImg::getIdsFormResidenceId($data['id'],$images);
-            //删除图片
-            HsResidenceImg::delFormIds($delIDs);
+//            $images = $data['images'];
+//            unset($data['images']);
+//            //获取删除图片的id集合
+//            $delIDs = HsResidenceImg::getIdsFormResidenceId($data['id'],$images);
+//            //删除图片
+//            HsResidenceImg::delFormIds($delIDs);
             // 保存商品
+            $data['house_pic'] = implode(',', $data['house_pic']);
             $this->allowField(true)->save($data);
             return true;
         });
@@ -53,8 +71,8 @@ class HsResidence extends Residence
     public function frame($data)
     {
         $session = Session::get('yoshop_store');
-        $data['status_user'] = $session['user']['store_user_id'];
-        $data['status_time'] = date('Y-m-d H:i:s');
+        $data['down_user'] = $session['user']['store_user_id'];
+        $data['downtime'] = time();
         if($this->save($data)){
             return true;
         }

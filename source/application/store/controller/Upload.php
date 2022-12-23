@@ -57,6 +57,33 @@ class Upload extends Controller
     }
 
     /**
+     * 图片上传接口
+     * @param int $group_id
+     * @return \think\response\Json
+     */
+    public function video($group_id = -1)
+    {
+        set_time_limit(0);
+        //获取上传文件
+        $data = $this->request->file('video');
+        //设置保存规则 - default(不需要时间文件夹，直接保存在uploads/video下面)
+        $data->rule('default');
+        $info = $data->move(WEB_PATH . 'uploads' . DS . 'video');
+        if ($info) {
+            // 成功上传后 获取上传信息
+            // 输出42a79759f284b767dfcb2a0197904287.jpg
+            $path = 'video/' . str_replace("\\", "/", $info->getSaveName());
+            $arr = ['code' => 1, 'msg' => '文件上传成功', 'data' => ['src' => $path]];
+            // 添加文件库记录
+            $uploadFile = $this->addUploadFile($group_id, $path, $info->getInfo(), $info->getInfo()['type'],'video');
+            return json($arr);
+        } else {
+            $arr = ['code' => -1, 'msg' => '文件上传失败'];
+            return json($arr);
+        }
+    }
+
+    /**
      * 添加文件库上传记录
      * @param $group_id
      * @param $fileName

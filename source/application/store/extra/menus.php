@@ -205,6 +205,7 @@ class Menus extends Controller {
                                     'houses.residence/edit',
                                     'houses.residence/delete',
                                     'houses.residence/frame',
+                                    'houses.residence/add',
                                 ]
                             ],
                             [
@@ -221,6 +222,14 @@ class Menus extends Controller {
                             ],
                         ]
                     ],
+                    [
+                        'name' => '举报管理',
+                        'index' => 'houses.report/index',
+                        'uris' => [
+                            'houses.report/index',
+                            'houses.report/edit',
+                        ]
+                    ]
                 ],
             ],
             'setting' => [

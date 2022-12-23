@@ -8,16 +8,16 @@
                 <div class="widget-body am-fr">
                     <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
                         <div class="am-form-group">
-                            <!--<div class="am-btn-toolbar">
-                                <?php /*if (checkPrivilege('houses.office/add')): */ ?>
+                            <div class="am-btn-toolbar">
+                                <?php if (checkPrivilege('houses.residence/add')): ?>
                                     <div class="am-btn-group am-btn-group-xs">
                                         <a class="am-btn am-btn-default am-btn-success am-radius"
-                                           href="<? /*= url('houses.office/add') */ ?>">
+                                           href="<?= url('houses.residence/add')  ?>">
                                             <span class="am-icon-plus"></span> 新增
                                         </a>
                                     </div>
-                                <?php /*endif; */ ?>
-                            </div>-->
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                     <div class="am-scrollable-horizontal am-u-sm-12">
@@ -38,31 +38,30 @@
                                 <tr>
                                     <td class="am-text-middle"><?= $item['id'] ?></td>
                                     <td class="am-text-middle">
-                                        <?php if (count($item['images']) == 0) : ?>
+                                        <?php if ($item['house_icon'] == '') : ?>
                                             <img src="http://f.vx114.cn/uploads/nopic.png" alt="" height="60">
                                         <?php else : ?>
-                                            <img src="<?= $item['images'][0]['url'] ?>" alt="" height="60">
+                                            <img src="<?= $item['house_icon'] ?>" alt="" height="60">
                                         <?php endif; ?>
                                     </td>
                                     <td class="am-text-middle" style="width: 300px;">
                                         <p style="width: 240px;"><?= $item['title'] ?></p>
                                     </td>
                                     <td class="am-text-middle">
-                                        <p>租金：<?= $item['rent'] ?>/月</p>
+                                        <p>租金：<?= $item['price'] ?>/月</p>
                                         <p>支付方式：<?= $item['pay_type'] ?></p>
                                     </td>
                                     <td class="am-text-middle">
                                         <div style="display: flex">
                                             <div style="margin-right: 30px">
-                                                <p>房型：<?= $item['room'] ?>，<?= $item['hall'] ?>
-                                                    ，<?= $item['toilet'] ?> </p>
-                                                <p>面积：<?= $item['area'] ?>/m²</p>
+                                                <p>房型：<?= $item['house_type'] ?></p>
+                                                <p>面积：<?= $item['house_area'] ?>/m²</p>
                                                 <p>朝向：<?= $item['orientation'] ?> </p>
                                             </div>
                                             <div>
                                                 <p>楼层：<?= $item['floor'] ?>层 </p>
-                                                <p>装修：<?= $item['renovation'] ?></p>
-                                                <p>物业费：<?= $item['wuye'] ?>/月 </p>
+                                                <p>装修：<?= $item['finish'] ?></p>
+                                                <p>物业费：<?= $item['property_fee'] ?>/月 </p>
                                             </div>
                                         </div>
                                     </td>
@@ -74,16 +73,16 @@
                                                     <a href="javascript:void(0);"
                                                        data-id="<?= $item['id'] ?>"
                                                        data-status="1"
-                                                       class="item-frame"
+                                                       class="item-frame tpl-table-black-operation-del"
                                                     >
-                                                        上架
+                                                        下架
                                                     </a>
                                                 <?php else: ?>
                                                     <a href="javascript:void(0);"
                                                        data-id="<?= $item['id'] ?>"
                                                        data-status="0"
-                                                       class="item-frame tpl-table-black-operation-del">
-                                                        下架
+                                                       class="item-frame">
+                                                        上架
                                                     </a>
                                                 <?php endif; ?>
                                             <?php endif; ?>
@@ -123,7 +122,7 @@
 
         $('.item-frame').click(function () {
             var data = $(this).data();
-            layer.confirm('确定要' + (parseInt(data.status) == 1 ? '上架' : '下架') + '该条信息吗？', {title: '友情提示'}
+            layer.confirm('确定要' + (parseInt(data.status) == 1 ? '下架' : '上架') + '该条信息吗？', {title: '友情提示'}
                 , function (index) {
                     $.post("<?= url('houses.residence/frame') ?>", {
                         id: data.id,
