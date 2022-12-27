@@ -97,6 +97,33 @@ class Menus extends Controller {
                     ],
                 ]
             ],
+            'contract' => [
+                'name' => '合同管理',
+                'icon' => 'icon-user',
+                'index' => 'contract.contractlist/index',
+                'submenu' => [
+                    [
+                        'name' => '合同列表',
+                        'index' => 'contract.contractlist/index',
+                        'uris' => [
+                            'contract.contractlist/index',
+                            'contract.contractlist/preview',
+                        ]
+                    ],
+                    [
+                        'name' => '合同模板',
+                        'index' => 'contract.contracttemplate/index',
+                        'uris' => [
+                            'contract.contracttemplate/index',
+                            'contract.contracttemplate/add',
+                            'contract.contracttemplate/edit',
+                            'contract.contracttemplate/delete',
+                            'contract.contracttemplate/copy',
+                            'contract.contracttemplate/preview',
+                        ]
+                    ],
+                ]
+            ],
             'finance' => [
                 'name' => '财务管理',
                 'icon' => 'icon-qiandai',

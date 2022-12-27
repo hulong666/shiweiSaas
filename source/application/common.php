@@ -353,3 +353,26 @@ function filter_emoji($text)
     // 如需支持emoji表情, 需将mysql的编码改为utf8mb4
     return preg_replace('/[\xf0-\xf7].{3}/', '', $text);
 }
+
+/**
+ * 数字转为大写数字
+ * @param $num string
+ * @return string|null
+ */
+function intTostr($num) {
+    // 判断是否为数组
+    if(!is_numeric($num)){
+        return "要转换的金额只能为数字!";
+    }
+    // 预定义要转换的字符,自己可以切换一下要转换的方式
+    // $arr = array('零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖');
+    $arr = array('零', '一', '二', '三', '四', '五', '六', '七', '八', '九');
+    $result = null;
+    //获取字符串的长度 4dn.net
+    $integerArrLength = strlen($num);
+    //开始转化
+    for($i = 0; $i < $integerArrLength; $i++) {
+        $result .= $arr[$num[$i]];
+    }
+    return $result;
+}

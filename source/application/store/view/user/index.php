@@ -66,14 +66,16 @@
                                 <th>用户ID</th>
                                 <th>微信头像</th>
                                 <th>微信昵称</th>
-                                <th>用户余额</th>
-                                <th>可用积分</th>
-                                <th>会员等级</th>
-                                <th>实际消费金额</th>
-                                <th>性别</th>
-                                <th>国家</th>
-                                <th>省份</th>
-                                <th>城市</th>
+                                <th>真实姓名</th>
+                                <th>手机号</th>
+<!--                                <th>用户余额</th>-->
+<!--                                <th>可用积分</th>-->
+<!--                                <th>会员等级</th>-->
+<!--                                <th>实际消费金额</th>-->
+<!--                                <th>性别</th>-->
+<!--                                <th>国家</th>-->
+<!--                                <th>省份</th>-->
+<!--                                <th>城市</th>-->
                                 <th>注册时间</th>
                                 <th>操作</th>
                             </tr>
@@ -88,40 +90,22 @@
                                         </a>
                                     </td>
                                     <td class="am-text-middle"><?= $item['nickName'] ?></td>
-                                    <td class="am-text-middle"><?= $item['balance'] ?></td>
-                                    <td class="am-text-middle"><?= $item['points'] ?></td>
-                                    <td class="am-text-middle">
-                                        <?= !empty($item['grade']) ? $item['grade']['name'] : '--' ?>
-                                    </td>
-                                    <td class="am-text-middle"><?= $item['expend_money'] ?></td>
-                                    <td class="am-text-middle"><?= $item['gender'] ?></td>
-                                    <td class="am-text-middle"><?= $item['country'] ?: '--' ?></td>
-                                    <td class="am-text-middle"><?= $item['province'] ?: '--' ?></td>
-                                    <td class="am-text-middle"><?= $item['city'] ?: '--' ?></td>
+                                    <td class="am-text-middle"><?= $item['realName'] ?></td>
+                                    <td class="am-text-middle"><?= $item['phone'] ?></td>
+<!--                                    <td class="am-text-middle">--><?//= $item['balance'] ?><!--</td>-->
+<!--                                    <td class="am-text-middle">--><?//= $item['points'] ?><!--</td>-->
+<!--                                    <td class="am-text-middle">-->
+<!--                                        --><?//= !empty($item['grade']) ? $item['grade']['name'] : '--' ?>
+<!--                                    </td>-->
+<!--                                    <td class="am-text-middle">--><?//= $item['expend_money'] ?><!--</td>-->
+<!--                                    <td class="am-text-middle">--><?//= $item['gender'] ?><!--</td>-->
+<!--                                    <td class="am-text-middle">--><?//= $item['country'] ?: '--' ?><!--</td>-->
+<!--                                    <td class="am-text-middle">--><?//= $item['province'] ?: '--' ?><!--</td>-->
+<!--                                    <td class="am-text-middle">--><?//= $item['city'] ?: '--' ?><!--</td>-->
                                     <td class="am-text-middle"><?= $item['create_time'] ?></td>
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">
-                                            <?php if (checkPrivilege('user/recharge')): ?>
-                                                <a class="j-recharge tpl-table-black-operation-default"
-                                                   href="javascript:void(0);"
-                                                   title="用户充值"
-                                                   data-id="<?= $item['user_id'] ?>"
-                                                   data-balance="<?= $item['balance'] ?>"
-                                                   data-points="<?= $item['points'] ?>"
-                                                >
-                                                    <i class="iconfont icon-qiandai"></i>
-                                                    充值
-                                                </a>
-                                            <?php endif; ?>
-                                            <?php if (checkPrivilege('user/grade')): ?>
-                                                <a class="j-grade tpl-table-black-operation-default"
-                                                   href="javascript:void(0);"
-                                                   data-id="<?= $item['user_id'] ?>"
-                                                   title="修改会员等级">
-                                                    <i class="iconfont icon-grade-o"></i>
-                                                    会员等级
-                                                </a>
-                                            <?php endif; ?>
+
                                             <?php if (checkPrivilege('user/delete')): ?>
                                                 <a class="j-delete tpl-table-black-operation-default"
                                                    href="javascript:void(0);"
