@@ -139,9 +139,10 @@
                     </div>
                 </form>
 
-                <div class="am-u-sm-2 am-u-md-2 am-u-lg-2" style="height: 800px;border: 1px solid red;">
+                <!-- todo 不确定合同值的代码是否需要 -->
+                <!--<div class="am-u-sm-2 am-u-md-2 am-u-lg-2" style="height: 800px;border: 1px solid red;">
 
-                </div>
+                </div>-->
             </div>
 
 

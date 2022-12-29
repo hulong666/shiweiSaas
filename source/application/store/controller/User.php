@@ -81,6 +81,14 @@ class User extends Controller
         return $this->renderError($model->getError() ?: '操作失败');
     }
 
+    /**
+     * 查看合同
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function preview($id)
     {
         $model = ContractListModel::detail($id);

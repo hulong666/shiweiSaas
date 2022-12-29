@@ -70,7 +70,7 @@
                                 <th width="100">手机号</th>
                                 <th width="100">房号</th>
                                 <th width="100">面积(平方米)</th>
-                                <th width="100">租金(元/年)</th>
+                                <th width="100">租金(元/月)</th>
                                 <th width="100">起租时间</th>
                                 <th width="100">到期时间</th>
                                 <th width="100">状态</th>
@@ -92,7 +92,7 @@
                                     <td class="am-text-middle"><?= $item['phone'] ?></td>
                                     <td class="am-text-middle"><?= $item['contract'] == null ? '' : $item['contract']['room_number'] ?></td>
                                     <td class="am-text-middle"><?= $item['contract'] == null ? '' : $item['contract']['area'] ?></td>
-                                    <td class="am-text-middle"><?= $item['contract'] == null ? '' : $item['contract']['rent'] * 12 ?></td>
+                                    <td class="am-text-middle"><?= $item['contract'] == null ? '' : $item['contract']['rent'] ?></td>
                                     <td class="am-text-middle"><?= $item['contract'] == null ? '' : $item['contract']['start_time'] ?></td>
                                     <td class="am-text-middle"><?= $item['contract'] == null ? '' : $item['contract']['end_time'] ?></td>
                                     <td class="am-text-middle">
