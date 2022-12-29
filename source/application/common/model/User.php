@@ -27,6 +27,15 @@ class User extends BaseModel
     }
 
     /**
+     * 关联最新的合同
+     * @return \think\model\relation\HasOne
+     */
+    public function contract()
+    {
+        return $this->hasOne('ContractList','uid','user_id');
+    }
+
+    /**
      * 关联收货地址表
      * @return \think\model\relation\HasMany
      */

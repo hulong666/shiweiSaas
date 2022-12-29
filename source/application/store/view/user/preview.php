@@ -22,6 +22,7 @@
                                         <p style="font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $item['content'] ?></p>
                                     </div>
                                 <?php endforeach; ?>
+
                                 <div>
                                     <p>房号：<?= $model['room_number'] ?></p>
                                     <p>类型：<?= $model['business_type']['text'] ?></p>
@@ -32,7 +33,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </fieldset>
                 </div>
 

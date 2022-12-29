@@ -2,6 +2,7 @@
 
 namespace app\store\controller;
 
+use app\store\model\ContractList as ContractListModel;
 use app\store\model\User as UserModel;
 use app\store\model\user\Grade as GradeModel;
 
@@ -80,4 +81,9 @@ class User extends Controller
         return $this->renderError($model->getError() ?: '操作失败');
     }
 
+    public function preview($id)
+    {
+        $model = ContractListModel::detail($id);
+        return $this->fetch('preview',compact('model'));
+    }
 }

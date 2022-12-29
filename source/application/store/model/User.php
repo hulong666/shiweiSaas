@@ -45,15 +45,15 @@ class User extends UserModel
     public function getList($nickName = '', $gender = -1, $grade = null)
     {
         // 检索：微信昵称
-        !empty($nickName) && $this->where('nickName', 'like', "%$nickName%");
+        !empty($nickName) && $this->where('realName', 'like', "%$nickName%");
         // 检索：性别
         if ($gender !== '' && $gender > -1) {
-            $this->where('gender', '=', (int)$gender);
+            $this->where('renting', '=', (int)$gender);
         }
         // 检索：会员等级
-        $grade > 0 && $this->where('grade_id', '=', (int)$grade);
+        $grade > 0 && $this->where('renting', '=', (int)$grade);
         // 获取用户列表
-        return $this->with(['grade'])
+        return $this->with(['grade','contract'])
             ->where('is_delete', '=', '0')
             ->order(['create_time' => 'desc'])
             ->paginate(15, false, [
