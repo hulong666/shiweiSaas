@@ -31,6 +31,7 @@
                                 <th>所在楼盘</th>
                                 <th>价格</th>
                                 <th>写字楼信息</th>
+                                <th>租售状态</th>
                                 <th>添加时间</th>
                                 <th>更新时间</th>
                                 <th>操作</th>
@@ -57,6 +58,15 @@
                                         <span>单价：<?= $item['singleprice'] ?>/m²</span>
                                         <span>楼层：<?= $item['floor'] ?>楼</span>
                                         <span>房号：<?= $item['room_number'] ?></span>
+                                    </td>
+                                    <td class="am-text-middle">
+                                        <?php if ($item['lease_status']['value'] == 0): ?>
+                                            <span class="am-badge am-badge-danger"><?= $item['lease_status']['text'] ?></span>
+                                        <?php elseif($item['lease_status']['value'] == 1): ?>
+                                            <span class="am-badge am-badge-secondary"><?= $item['lease_status']['text'] ?></span>
+                                        <?php else: ?>
+                                            <span class="am-badge am-badge-success"><?= $item['lease_status']['text'] ?></span>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="am-text-middle"><?= $item['create_time'] ?></td>
                                     <td class="am-text-middle"><?= $item['update_time'] ?></td>

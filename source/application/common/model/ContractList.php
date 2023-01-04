@@ -46,6 +46,16 @@ class ContractList extends BaseModel
         return ['text'=>$this->ContractTemplateModel->contract[$value],'value'=>$value];
     }
 
+    /**
+     * 类型获取器
+     * @param $value
+     * @return array
+     */
+    public function getTypeAttr($value)
+    {
+        $type = [1=>'写字楼',2=>'住宅'];
+        return ['text'=>$type[$value],'value'=>$value];
+    }
 
     /**
      * 内容获取器
@@ -99,6 +109,22 @@ class ContractList extends BaseModel
             $value = str_replace($k, $item, $value);
         }
         return $value;
+    }
+
+    /**
+     * 判断合同是否到期
+     * @param $value
+     * @param $data
+     * @return string
+     */
+    public function getExpireAttr($value, $data)
+    {
+        $now = date('Y-m-d H:i:s');
+        //到期了
+        if($now > $data['end_time'].' 23:59:59'){
+            return '到期';
+        }
+        return '未到期';
     }
 
     /**

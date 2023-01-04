@@ -11,6 +11,9 @@ class Residence extends BaseModel
 {
     protected $name = 'hs_residence';
 
+    //租售状态
+    protected $lease_status = ['空置','已租','已售'];
+
     /**
      * 关联图片表
      * @return \think\model\relation\HasMany
@@ -18,6 +21,16 @@ class Residence extends BaseModel
     public function images()
     {
         return $this->hasMany('app\\common\\model\\ResidenceImg','residence_id','id');
+    }
+
+    /**
+     * 租售状态获取器
+     * @param $value
+     * @return array
+     */
+    public function getLeaseStatusAttr($value)
+    {
+        return ['text'=>$this->lease_status[$value],'value'=>$value];
     }
 
     public function getHousePicAttr($value)

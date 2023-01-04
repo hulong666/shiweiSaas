@@ -29,6 +29,7 @@
                                 <th>标题</th>
                                 <th>租金</th>
                                 <th>房屋信息</th>
+                                <th>租售状态</th>
                                 <th>添加时间</th>
                                 <th>操作</th>
                             </tr>
@@ -64,6 +65,15 @@
                                                 <p>物业费：<?= $item['property_fee'] ?>/月 </p>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="am-text-middle">
+                                        <?php if ($item['lease_status']['value'] == 0): ?>
+                                            <span class="am-badge am-badge-danger"><?= $item['lease_status']['text'] ?></span>
+                                        <?php elseif($item['lease_status']['value'] == 1): ?>
+                                            <span class="am-badge am-badge-secondary"><?= $item['lease_status']['text'] ?></span>
+                                        <?php else: ?>
+                                            <span class="am-badge am-badge-success"><?= $item['lease_status']['text'] ?></span>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="am-text-middle"><?= $item['create_time'] ?></td>
                                     <td class="am-text-middle">

@@ -36,6 +36,7 @@ class HsResidence extends Residence
         $data['house_pic'] = implode(',', $data['house_pic']);
         $data['house_type'] = $data['room'].','.$data['hall'].','.$data['toilet'];
         $data['name'] = trim($data['name']);
+        $data['unoccupied_time'] = date('Y-m-d H:i:s');
         unset($data['room']);
         unset($data['hall']);
         unset($data['toilet']);

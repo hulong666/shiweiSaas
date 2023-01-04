@@ -17,6 +17,9 @@ class HsOffice extends BaseModel
 {
     protected $name = 'hs_office';
 
+    //租售状态
+    protected $lease_status = ['空置','已租','已售'];
+
     /**
      * 关联楼盘表
      * @return \think\model\relation\HasOne
@@ -24,6 +27,16 @@ class HsOffice extends BaseModel
     public function property()
     {
         return $this->hasOne('RegionalProperty','id','property_id');
+    }
+
+    /**
+     * 租售状态获取器
+     * @param $value
+     * @return array
+     */
+    public function getLeaseStatusAttr($value)
+    {
+        return ['text'=>$this->lease_status[$value],'value'=>$value];
     }
 
     /**

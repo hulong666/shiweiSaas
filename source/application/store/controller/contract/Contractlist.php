@@ -18,6 +18,7 @@ class Contractlist extends Controller
     {
         $model = new ContractListModel();
         $list = $model->getList();
+//        halt($list->toArray());
         return $this->fetch('index', compact('list'));
     }
 

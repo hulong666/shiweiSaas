@@ -13,7 +13,7 @@ class ContractTemplate extends BaseModel
     public $contract_type = [10=>'租赁合同','20'=>'非租赁合同'];
 
     //业务类型
-    public $business_type = [10=>'整租','20'=>'合租'];
+    public $business_type = [10=>'整租','20'=>'合租','30'=>'出售'];
 
     //签约对象
     public $contract = [10=>'租户','20'=>'房东'];

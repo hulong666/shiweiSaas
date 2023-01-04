@@ -17,10 +17,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>签约租户</th>
+                                <th>房源</th>
                                 <th>合同种类</th>
                                 <th>模板名称</th>
                                 <th>业务类型</th>
                                 <th>合同对象</th>
+                                <th>合同状态</th>
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -30,10 +32,22 @@
                                 <tr>
                                     <td class="am-text-middle"><?= $item['id'] ?></td>
                                     <td class="am-text-middle"><?= $item['user']['realName'] ?></td>
+                                    <td class="am-text-middle">
+                                        <?= $item['type']['text'] ?>(id：<?= $item['fid'] ?>)
+                                    </td>
                                     <td class="am-text-middle"><?= $item['contract_type']['text'] ?></td>
                                     <td class="am-text-middle"><?= $item['template_ame'] ?></td>
                                     <td class="am-text-middle"><?= $item['business_type']['text'] ?></td>
                                     <td class="am-text-middle"><?= $item['contract']['text'] ?></td>
+                                    <td class="am-text-middle">
+                                        <?php if ($item['is_out'] == 1): ?>
+                                            <span class="am-badge am-badge-danger"> 退租 </span>
+                                        <?php elseif($item['expire'] == '到期'): ?>
+                                            <span class="am-badge am-badge-secondary"><?= $item['expire'] ?></span>
+                                        <?php else: ?>
+                                            <span class="am-badge am-badge-success"><?= $item['expire'] ?></span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="am-text-middle"><?= $item['create_time'] ?></td>
                                     <td class="am-text-middle">
                                         <div class="tpl-table-black-operation">

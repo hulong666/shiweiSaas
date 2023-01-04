@@ -15,6 +15,7 @@ class ContractList extends ContractListModel
             ->order(['id' => 'desc'])
             ->paginate(15, false, [
                 'query' => \request()->request()
-            ]);
+            ])
+            ->append(['expire']);
     }
 }

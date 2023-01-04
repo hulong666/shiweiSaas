@@ -72,6 +72,7 @@ class HsOffice extends HsOfficeModel
     {
         $data['wxapp_id'] = self::$wxapp_id;
         $data['house_pic'] = implode(',', $data['house_pic']);
+        $data['unoccupied_time'] = date('Y-m-d H:i:s');
         return $this->save($data);
     }
 
